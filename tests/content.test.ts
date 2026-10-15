@@ -4,8 +4,10 @@ import { describe, expect, it } from "vitest";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
 import { employers } from "@/content/experience";
+import { currently } from "@/content/about";
 import {
   formatPeriod,
+  getBuilding,
   getFeatured,
   getProject,
   getProjects,
@@ -68,7 +70,12 @@ describe("registry helpers", () => {
 
   it("sorts all projects by order", () => {
     expect(getProjects()[0].slug).toBe("neatcode");
-    expect(getProjects()).toHaveLength(5);
+    expect(getProjects()).toHaveLength(6);
+  });
+
+  it("keeps building projects out of selected work and lists them separately", () => {
+    expect(getBuilding().map((p) => p.slug)).toEqual(["mcp-evals"]);
+    expect(getSelectedWork().some((p) => p.status === "building")).toBe(false);
   });
 
   it("returns undefined for unknown slugs", () => {
@@ -98,8 +105,9 @@ describe("facts", () => {
 
   it("never contains a phone number in content/", () => {
     const dir = join(process.cwd(), "content");
-    for (const f of readdirSync(dir)) {
-      expect(readFileSync(join(dir, f), "utf8")).not.toMatch(PHONE);
+    for (const f of readdirSync(dir, { recursive: true }) as string[]) {
+      const path = join(dir, f);
+      if (statSync(path).isFile()) expect(readFileSync(path, "utf8")).not.toMatch(PHONE);
     }
   });
 
@@ -132,18 +140,32 @@ describe("résumé alignment (final review)", () => {
     expect(site.bio.join(" ")).not.toMatch(/own time/i);
   });
 
-  // Technologies the résumé ties to each project; card stacks may only use these.
+  // Technologies the résumé ties to each project (or, for mcp-evals, its public repo's
+  // package.json dependencies); card stacks may only use these.
   const RESUME_STACK: Record<string, string[]> = {
     neatcode: ["TypeScript", "ts-morph", "SQLite", "MCP"],
     "gpu-inference": ["ComfyUI", "GPU pods", "Queues"],
     fleet: ["RL environments", "Agent evaluation"],
     "genai-platform": ["LangChain", "MCP", "Vector databases", "RAG"],
     ivorie: ["NestJS", "Expo React Native", "Next.js", "Stripe Connect", "AWS"],
+    "mcp-evals": ["TypeScript", "MCP SDK", "zod", "Commander"],
   };
 
   it("uses only résumé-backed technologies in project stacks", () => {
     for (const p of projects) {
       for (const tech of p.stack) expect(RESUME_STACK[p.slug]).toContain(tech);
     }
+  });
+});
+
+describe("home highlights and about currently", () => {
+  it("shows four résumé-backed highlights in the hero", () => {
+    expect(site.highlights.map((h) => h.value)).toEqual(["4+ years", "10k+", "131k LOC", "+25%"]);
+  });
+
+  it("dates the Currently section and links each item", () => {
+    expect(currently.asOf).toMatch(/^[A-Z][a-z]+ \d{4}$/);
+    expect(currently.items.length).toBeGreaterThanOrEqual(3);
+    for (const item of currently.items) expect(item.href).toMatch(/^(\/|https:\/\/)/);
   });
 });

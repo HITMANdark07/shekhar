@@ -2,13 +2,13 @@ import Link from "next/link";
 import type { Project } from "@/content/types";
 import { projectTag } from "@/lib/projects";
 import { Badge } from "./badge";
-import { GraphPoster } from "./graph-poster";
+import { NeatCodeGraph } from "./demos/neatcode-graph";
 import { MetricList } from "./metric-list";
 
 export function FeaturedProject({ project }: { project: Project }) {
   const npm = project.links?.npm?.[0];
   return (
-    <article className="grid overflow-hidden rounded-xl border border-border bg-surface md:grid-cols-[1.1fr_1fr]">
+    <article className="grid overflow-hidden rounded-xl border border-border bg-surface md:grid-cols-[1fr_1.15fr]">
       <div className="p-6 sm:p-8">
         <Badge>
           {projectTag(project)}
@@ -29,9 +29,11 @@ export function FeaturedProject({ project }: { project: Project }) {
           )}
         </p>
       </div>
-      <figure className="flex min-h-52 flex-col items-center justify-center gap-2 border-t border-border bg-bg p-6 md:border-l md:border-t-0">
-        <GraphPoster />
-        <figcaption className="font-mono text-[0.8125rem] text-fg-meta">Code graph preview</figcaption>
+      <figure className="flex flex-col gap-2 border-t border-border bg-bg p-5 md:border-l md:border-t-0">
+        <NeatCodeGraph variant="compact" />
+        <figcaption className="font-mono text-[0.8125rem] text-fg-meta">
+          This website, indexed by NeatCode — real graph, not a mock-up.
+        </figcaption>
       </figure>
     </article>
   );

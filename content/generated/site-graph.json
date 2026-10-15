@@ -1,0 +1,1187 @@
+{
+ "generatedAt": "2026-10-15",
+ "stats": {
+  "files": 48,
+  "symbols": 81,
+  "edges": 89,
+  "indexSeconds": 1.4
+ },
+ "nodes": [
+  {
+   "id": "app/about/page.tsx",
+   "label": "about/page.tsx",
+   "group": "app",
+   "x": 261.3,
+   "y": 104.8,
+   "symbols": [
+    "AboutPage"
+   ]
+  },
+  {
+   "id": "app/layout.tsx",
+   "label": "layout.tsx",
+   "group": "app",
+   "x": 107.0,
+   "y": 104.6,
+   "symbols": [
+    "RootLayout"
+   ]
+  },
+  {
+   "id": "app/opengraph-image.tsx",
+   "label": "opengraph-image.tsx",
+   "group": "app",
+   "x": 103.1,
+   "y": 129.3,
+   "symbols": [
+    "Image"
+   ]
+  },
+  {
+   "id": "app/page.tsx",
+   "label": "page.tsx",
+   "group": "app",
+   "x": 292.0,
+   "y": 134.4,
+   "symbols": [
+    "HomePage"
+   ]
+  },
+  {
+   "id": "app/projects/[slug]/opengraph-image.tsx",
+   "label": "projects/[slug]/opengraph-image.tsx",
+   "group": "app",
+   "x": 163.1,
+   "y": 146.3,
+   "symbols": [
+    "generateStaticParams",
+    "Image"
+   ]
+  },
+  {
+   "id": "app/projects/[slug]/page.tsx",
+   "label": "projects/[slug]/page.tsx",
+   "group": "app",
+   "x": 353.8,
+   "y": 204.5,
+   "symbols": [
+    "generateStaticParams",
+    "generateMetadata",
+    "SectionHeading",
+    "ProjectPage"
+   ]
+  },
+  {
+   "id": "app/projects/page.tsx",
+   "label": "projects/page.tsx",
+   "group": "app",
+   "x": 257.5,
+   "y": 178.4,
+   "symbols": [
+    "ProjectsPage"
+   ]
+  },
+  {
+   "id": "app/robots.ts",
+   "label": "robots.ts",
+   "group": "app",
+   "x": 162.6,
+   "y": 82.3,
+   "symbols": [
+    "robots"
+   ]
+  },
+  {
+   "id": "app/sitemap.ts",
+   "label": "sitemap.ts",
+   "group": "app",
+   "x": 199.0,
+   "y": 140.5,
+   "symbols": [
+    "sitemap"
+   ]
+  },
+  {
+   "id": "app/terminal/page.tsx",
+   "label": "terminal/page.tsx",
+   "group": "app",
+   "x": 256.2,
+   "y": 28.0,
+   "symbols": [
+    "TerminalPage"
+   ]
+  },
+  {
+   "id": "components/badge.tsx",
+   "label": "badge.tsx",
+   "group": "components",
+   "x": 348.4,
+   "y": 177.8,
+   "symbols": [
+    "Badge"
+   ]
+  },
+  {
+   "id": "components/button-styles.ts",
+   "label": "button-styles.ts",
+   "group": "components",
+   "x": 367.4,
+   "y": 116.5,
+   "symbols": [
+    "buttonClass"
+   ]
+  },
+  {
+   "id": "components/demos/demo-frame.tsx",
+   "label": "demos/demo-frame.tsx",
+   "group": "components",
+   "x": 453.5,
+   "y": 244.5,
+   "symbols": [
+    "DemoFrame"
+   ]
+  },
+  {
+   "id": "components/demos/eval-matrix-demo.tsx",
+   "label": "demos/eval-matrix-demo.tsx",
+   "group": "components",
+   "x": 447.1,
+   "y": 300.1,
+   "symbols": [
+    "EvalMatrixDemo"
+   ]
+  },
+  {
+   "id": "components/demos/fleet-episode-demo.tsx",
+   "label": "demos/fleet-episode-demo.tsx",
+   "group": "components",
+   "x": 426.3,
+   "y": 296.0,
+   "symbols": [
+    "Target",
+    "MockPage",
+    "RewardCurve",
+    "FleetEpisodeDemo"
+   ]
+  },
+  {
+   "id": "components/demos/flow-demo.tsx",
+   "label": "demos/flow-demo.tsx",
+   "group": "components",
+   "x": 497.3,
+   "y": 287.8,
+   "symbols": [
+    "FlowView",
+    "FlowDemo"
+   ]
+  },
+  {
+   "id": "components/demos/gpu-queue-demo.tsx",
+   "label": "demos/gpu-queue-demo.tsx",
+   "group": "components",
+   "x": 499.7,
+   "y": 278.1,
+   "symbols": [
+    "JobChip",
+    "initial",
+    "GpuQueueDemo"
+   ]
+  },
+  {
+   "id": "components/demos/neatcode-graph.tsx",
+   "label": "demos/neatcode-graph.tsx",
+   "group": "components",
+   "x": 348.1,
+   "y": 226.1,
+   "symbols": [
+    "NeatCodeGraph"
+   ]
+  },
+  {
+   "id": "components/demos/play-button.tsx",
+   "label": "demos/play-button.tsx",
+   "group": "components",
+   "x": 484.2,
+   "y": 302.7,
+   "symbols": [
+    "PlayButton",
+    "ControlButton"
+   ]
+  },
+  {
+   "id": "components/demos/project-demo.tsx",
+   "label": "demos/project-demo.tsx",
+   "group": "components",
+   "x": 423.1,
+   "y": 258.1,
+   "symbols": [
+    "ProjectDemo"
+   ]
+  },
+  {
+   "id": "components/experience-list.tsx",
+   "label": "experience-list.tsx",
+   "group": "components",
+   "x": 263.9,
+   "y": 129.2,
+   "symbols": [
+    "ExperienceList"
+   ]
+  },
+  {
+   "id": "components/featured-project.tsx",
+   "label": "featured-project.tsx",
+   "group": "components",
+   "x": 302.2,
+   "y": 176.3,
+   "symbols": [
+    "FeaturedProject"
+   ]
+  },
+  {
+   "id": "components/metric-list.tsx",
+   "label": "metric-list.tsx",
+   "group": "components",
+   "x": 319.8,
+   "y": 175.6,
+   "symbols": [
+    "MetricList"
+   ]
+  },
+  {
+   "id": "components/now-building.tsx",
+   "label": "now-building.tsx",
+   "group": "components",
+   "x": 330.8,
+   "y": 152.6,
+   "symbols": [
+    "NowBuilding"
+   ]
+  },
+  {
+   "id": "components/project-card.tsx",
+   "label": "project-card.tsx",
+   "group": "components",
+   "x": 300.5,
+   "y": 160.1,
+   "symbols": [
+    "ProjectCard"
+   ]
+  },
+  {
+   "id": "components/project-cover.tsx",
+   "label": "project-cover.tsx",
+   "group": "components",
+   "x": 330.7,
+   "y": 142.9,
+   "symbols": [
+    "rng",
+    "GraphMotif",
+    "LanesMotif",
+    "WindowsMotif",
+    "BranchesMotif",
+    "ArcsMotif",
+    "MatrixMotif",
+    "DefaultMotif",
+    "ProjectCover"
+   ]
+  },
+  {
+   "id": "components/section.tsx",
+   "label": "section.tsx",
+   "group": "components",
+   "x": 315.0,
+   "y": 102.0,
+   "symbols": [
+    "Section"
+   ]
+  },
+  {
+   "id": "components/site-footer.tsx",
+   "label": "site-footer.tsx",
+   "group": "components",
+   "x": 130.9,
+   "y": 94.5,
+   "symbols": [
+    "SiteFooter"
+   ]
+  },
+  {
+   "id": "components/site-header.tsx",
+   "label": "site-header.tsx",
+   "group": "components",
+   "x": 92.0,
+   "y": 91.1,
+   "symbols": [
+    "SiteHeader"
+   ]
+  },
+  {
+   "id": "components/terminal/commands.ts",
+   "label": "terminal/commands.ts",
+   "group": "components",
+   "x": 233.8,
+   "y": 103.6,
+   "symbols": [
+    "helpText",
+    "runCommand"
+   ]
+  },
+  {
+   "id": "components/terminal/terminal.tsx",
+   "label": "terminal/terminal.tsx",
+   "group": "components",
+   "x": 246.8,
+   "y": 59.0,
+   "symbols": [
+    "Terminal"
+   ]
+  },
+  {
+   "id": "components/theme-toggle.tsx",
+   "label": "theme-toggle.tsx",
+   "group": "components",
+   "x": 28.0,
+   "y": 74.7,
+   "symbols": [
+    "ThemeToggle"
+   ]
+  },
+  {
+   "id": "content/about.ts",
+   "label": "about.ts",
+   "group": "content",
+   "x": 248.8,
+   "y": 115.3,
+   "symbols": []
+  },
+  {
+   "id": "content/case-studies.ts",
+   "label": "case-studies.ts",
+   "group": "content",
+   "x": 410.3,
+   "y": 232.7,
+   "symbols": []
+  },
+  {
+   "id": "content/demos/eval-matrix.ts",
+   "label": "demos/eval-matrix.ts",
+   "group": "content",
+   "x": 459.6,
+   "y": 332.0,
+   "symbols": [
+    "replayOrder"
+   ]
+  },
+  {
+   "id": "content/demos/fleet-episode.ts",
+   "label": "demos/fleet-episode.ts",
+   "group": "content",
+   "x": 399.0,
+   "y": 324.5,
+   "symbols": [
+    "cumulativeRewards"
+   ]
+  },
+  {
+   "id": "content/demos/flows.ts",
+   "label": "demos/flows.ts",
+   "group": "content",
+   "x": 556.8,
+   "y": 308.0,
+   "symbols": []
+  },
+  {
+   "id": "content/experience.ts",
+   "label": "experience.ts",
+   "group": "content",
+   "x": 297.2,
+   "y": 117.7,
+   "symbols": []
+  },
+  {
+   "id": "content/projects.ts",
+   "label": "projects.ts",
+   "group": "content",
+   "x": 220.9,
+   "y": 164.7,
+   "symbols": []
+  },
+  {
+   "id": "content/site.ts",
+   "label": "site.ts",
+   "group": "content",
+   "x": 182.2,
+   "y": 115.1,
+   "symbols": []
+  },
+  {
+   "id": "content/types.ts",
+   "label": "types.ts",
+   "group": "content",
+   "x": 262.8,
+   "y": 143.5,
+   "symbols": []
+  },
+  {
+   "id": "lib/json-ld.ts",
+   "label": "json-ld.ts",
+   "group": "lib",
+   "x": 170.6,
+   "y": 124.7,
+   "symbols": [
+    "personJsonLd"
+   ]
+  },
+  {
+   "id": "lib/og.tsx",
+   "label": "og.tsx",
+   "group": "lib",
+   "x": 89.1,
+   "y": 149.2,
+   "symbols": [
+    "renderOgImage"
+   ]
+  },
+  {
+   "id": "lib/projects.ts",
+   "label": "projects.ts",
+   "group": "lib",
+   "x": 259.7,
+   "y": 155.5,
+   "symbols": [
+    "getProjects",
+    "getProject",
+    "getFeatured",
+    "getSelectedWork",
+    "getBuilding",
+    "projectTag",
+    "formatMonth",
+    "formatPeriod"
+   ]
+  },
+  {
+   "id": "lib/sim/gpu-queue.ts",
+   "label": "sim/gpu-queue.ts",
+   "group": "lib",
+   "x": 572.0,
+   "y": 281.9,
+   "symbols": [
+    "random",
+    "createSim",
+    "load",
+    "route",
+    "clone",
+    "assign",
+    "step",
+    "run",
+    "killPod",
+    "revivePod",
+    "metrics"
+   ]
+  },
+  {
+   "id": "lib/site-graph.ts",
+   "label": "site-graph.ts",
+   "group": "lib",
+   "x": 316.8,
+   "y": 250.7,
+   "symbols": [
+    "neighbors",
+    "highlight"
+   ]
+  },
+  {
+   "id": "lib/theme.ts",
+   "label": "theme.ts",
+   "group": "lib",
+   "x": 33.6,
+   "y": 90.1,
+   "symbols": []
+  },
+  {
+   "id": "lib/use-demo-clock.ts",
+   "label": "use-demo-clock.ts",
+   "group": "lib",
+   "x": 472.7,
+   "y": 294.3,
+   "symbols": [
+    "subscribeReducedMotion",
+    "usePrefersReducedMotion",
+    "useDemoClock"
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "source": "app/about/page.tsx",
+   "target": "components/experience-list.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/about/page.tsx",
+   "target": "components/section.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/about/page.tsx",
+   "target": "content/about.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/about/page.tsx",
+   "target": "content/experience.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/about/page.tsx",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/layout.tsx",
+   "target": "components/site-footer.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/layout.tsx",
+   "target": "components/site-header.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/layout.tsx",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/layout.tsx",
+   "target": "lib/json-ld.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "app/layout.tsx",
+   "target": "lib/theme.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/opengraph-image.tsx",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/opengraph-image.tsx",
+   "target": "lib/og.tsx",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "components/button-styles.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "components/experience-list.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "components/featured-project.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "components/now-building.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "components/project-card.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "components/section.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "content/experience.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "lib/projects.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "app/projects/[slug]/opengraph-image.tsx",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/projects/[slug]/opengraph-image.tsx",
+   "target": "lib/og.tsx",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "app/projects/[slug]/opengraph-image.tsx",
+   "target": "lib/projects.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "app/projects/[slug]/page.tsx",
+   "target": "components/badge.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/projects/[slug]/page.tsx",
+   "target": "components/demos/project-demo.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/projects/[slug]/page.tsx",
+   "target": "components/metric-list.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/projects/[slug]/page.tsx",
+   "target": "content/case-studies.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/projects/[slug]/page.tsx",
+   "target": "lib/projects.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "app/projects/page.tsx",
+   "target": "components/project-card.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/projects/page.tsx",
+   "target": "lib/projects.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "app/robots.ts",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/sitemap.ts",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "app/sitemap.ts",
+   "target": "lib/projects.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "app/terminal/page.tsx",
+   "target": "components/terminal/terminal.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/demos/eval-matrix-demo.tsx",
+   "target": "components/demos/play-button.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/demos/eval-matrix-demo.tsx",
+   "target": "content/demos/eval-matrix.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/eval-matrix-demo.tsx",
+   "target": "lib/use-demo-clock.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/fleet-episode-demo.tsx",
+   "target": "components/demos/play-button.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/demos/fleet-episode-demo.tsx",
+   "target": "content/demos/fleet-episode.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/fleet-episode-demo.tsx",
+   "target": "lib/use-demo-clock.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/flow-demo.tsx",
+   "target": "components/demos/play-button.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/demos/flow-demo.tsx",
+   "target": "content/demos/flows.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/flow-demo.tsx",
+   "target": "lib/use-demo-clock.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/gpu-queue-demo.tsx",
+   "target": "components/demos/play-button.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/demos/gpu-queue-demo.tsx",
+   "target": "lib/sim/gpu-queue.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/gpu-queue-demo.tsx",
+   "target": "lib/use-demo-clock.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/neatcode-graph.tsx",
+   "target": "lib/site-graph.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/project-demo.tsx",
+   "target": "components/demos/demo-frame.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/demos/project-demo.tsx",
+   "target": "components/demos/eval-matrix-demo.tsx",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/project-demo.tsx",
+   "target": "components/demos/fleet-episode-demo.tsx",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/project-demo.tsx",
+   "target": "components/demos/flow-demo.tsx",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/project-demo.tsx",
+   "target": "components/demos/gpu-queue-demo.tsx",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/project-demo.tsx",
+   "target": "components/demos/neatcode-graph.tsx",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/demos/project-demo.tsx",
+   "target": "content/case-studies.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/experience-list.tsx",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/experience-list.tsx",
+   "target": "lib/projects.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/featured-project.tsx",
+   "target": "components/badge.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/featured-project.tsx",
+   "target": "components/demos/neatcode-graph.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/featured-project.tsx",
+   "target": "components/metric-list.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/featured-project.tsx",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/featured-project.tsx",
+   "target": "lib/projects.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/metric-list.tsx",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/now-building.tsx",
+   "target": "components/badge.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/now-building.tsx",
+   "target": "components/project-cover.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/now-building.tsx",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/project-card.tsx",
+   "target": "components/badge.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/project-card.tsx",
+   "target": "components/metric-list.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/project-card.tsx",
+   "target": "components/project-cover.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/project-card.tsx",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/project-card.tsx",
+   "target": "lib/projects.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/project-cover.tsx",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/site-footer.tsx",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/site-header.tsx",
+   "target": "components/theme-toggle.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/site-header.tsx",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/terminal/commands.ts",
+   "target": "content/about.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/terminal/commands.ts",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/terminal/commands.ts",
+   "target": "lib/projects.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/terminal/terminal.tsx",
+   "target": "components/terminal/commands.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/theme-toggle.tsx",
+   "target": "lib/theme.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "content/about.ts",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "content/case-studies.ts",
+   "target": "components/demos/demo-frame.tsx",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "content/experience.ts",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "content/projects.ts",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "content/site.ts",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "lib/json-ld.ts",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "lib/json-ld.ts",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "lib/projects.ts",
+   "target": "content/projects.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "lib/projects.ts",
+   "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  }
+ ]
+}
