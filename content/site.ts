@@ -16,6 +16,12 @@ export const site: Site = {
     "More and more of my work is the infrastructure under AI products: model routing, tool calling, retrieval, GPU inference and agent evaluation.",
     "I also build NeatCode, an open-source engine that indexes TypeScript codebases into a SQLite code graph and serves it to coding agents over MCP.",
   ],
+  highlights: [
+    { value: "4+ years", label: "shipping production backends" },
+    { value: "10k+", label: "chat messages a day (Ivorie)" },
+    { value: "131k LOC", label: "indexed in 3.8s (NeatCode)" },
+    { value: "+25%", label: "answer relevance from RAG" },
+  ],
   email: "shekharkumar235838@gmail.com",
   url: "https://shekhar-fawn.vercel.app",
   resume: "/resume.pdf",

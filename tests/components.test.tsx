@@ -4,6 +4,8 @@ import { ExperienceList } from "@/components/experience-list";
 import { FeaturedProject } from "@/components/featured-project";
 import { MetricList } from "@/components/metric-list";
 import { ProjectCard } from "@/components/project-card";
+import { ProjectCover } from "@/components/project-cover";
+import { projects } from "@/content/projects";
 import { employers } from "@/content/experience";
 import type { Project } from "@/content/types";
 import { getFeatured, getProject } from "@/lib/projects";
@@ -80,5 +82,19 @@ describe("ExperienceList", () => {
     expect(compact).toContain(employers[0].summary);
     expect(compact).not.toContain("<ul");
     expect(full).toContain(employers[1].highlights[0]);
+  });
+});
+
+describe("ProjectCover", () => {
+  it("draws a decorative motif for every project", () => {
+    for (const p of projects) {
+      const html = renderToStaticMarkup(<ProjectCover project={p} />);
+      expect(html).toContain(`data-motif="${p.slug}"`);
+      expect(html).toContain('aria-hidden="true"');
+    }
+  });
+
+  it("falls back to a generic motif for unknown projects", () => {
+    expect(renderToStaticMarkup(<ProjectCover project={sparse} />)).toContain('data-motif="default"');
   });
 });

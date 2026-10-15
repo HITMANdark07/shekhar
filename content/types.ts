@@ -79,6 +79,8 @@ export interface Site {
   /** ≤ 160 chars; default meta description. */
   description: string;
   bio: string[];
+  /** Hero stats; résumé facts only. */
+  highlights: Metric[];
   email: string;
   url: string;
   resume: string;

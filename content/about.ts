@@ -23,3 +23,24 @@ export const education: Education = {
   location: "Kolkata, IN",
   years: "2020 – 2023",
 };
+
+export const currently = {
+  asOf: "October 2026",
+  items: [
+    {
+      label: "Building mcp-evals",
+      detail: "an open-source eval harness for MCP servers. Milestone 1 (core runner and CLI) is merged.",
+      href: "/projects/mcp-evals",
+    },
+    {
+      label: "Shipping NeatCode",
+      detail: "v0.1.4 is on npm as @neatcodeai/cli, with installer and version fixes.",
+      href: "/projects/neatcode",
+    },
+    {
+      label: "Senior Software Engineer at Pure Billion Technologies",
+      detail: "working on AI infrastructure, agent evaluation and backend systems.",
+      href: "/about#experience-title",
+    },
+  ],
+};
