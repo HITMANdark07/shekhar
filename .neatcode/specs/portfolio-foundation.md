@@ -107,7 +107,7 @@ export interface Project {
   status: ProjectStatus;
   featured?: boolean;         // exactly one project is featured
   order: number;              // ascending sort
-  period: { start: string; end?: string };   // 'YYYY-MM'
+  period?: { start: string; end?: string };  // 'YYYY-MM'; optional — the résumé has no per-project dates for work projects
   role: string;
   org?: string;
   confidential?: boolean;     // shows "client details abstracted" note
