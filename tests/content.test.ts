@@ -126,3 +126,24 @@ describe("assets", () => {
     expect(existsSync(join(process.cwd(), "public/assets/Shekhar_Kumar_Resume.pdf"))).toBe(false);
   });
 });
+
+describe("résumé alignment (final review)", () => {
+  it("frames NeatCode as résumé work, not a side project", () => {
+    expect(site.bio.join(" ")).not.toMatch(/own time/i);
+  });
+
+  // Technologies the résumé ties to each project; card stacks may only use these.
+  const RESUME_STACK: Record<string, string[]> = {
+    neatcode: ["TypeScript", "ts-morph", "SQLite", "MCP"],
+    "gpu-inference": ["ComfyUI", "GPU pods", "Queues"],
+    fleet: ["RL environments", "Agent evaluation"],
+    "genai-platform": ["LangChain", "MCP", "Vector databases", "RAG"],
+    ivorie: ["NestJS", "Expo React Native", "Next.js", "Stripe Connect", "AWS"],
+  };
+
+  it("uses only résumé-backed technologies in project stacks", () => {
+    for (const p of projects) {
+      for (const tech of p.stack) expect(RESUME_STACK[p.slug]).toContain(tech);
+    }
+  });
+});

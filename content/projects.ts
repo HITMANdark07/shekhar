@@ -40,7 +40,7 @@ export const projects: Project[] = [
     role: "Architect",
     org: "Pure Billion Technologies",
     confidential: true,
-    stack: ["ComfyUI", "Docker", "GPU pods", "Queues"],
+    stack: ["ComfyUI", "GPU pods", "Queues"],
     metrics: [],
   },
   {
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     role: "Development lead",
     org: "Pure Billion Technologies",
     confidential: true,
-    stack: ["TypeScript", "RL environments", "Agent evaluation"],
+    stack: ["RL environments", "Agent evaluation"],
     metrics: [],
   },
   {

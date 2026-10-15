@@ -64,3 +64,17 @@ describe("OG image content type", () => {
     expect(rules).toMatch(/^\/projects\/\*\/opengraph-image\n\s+Content-Type: image\/png/m);
   });
 });
+
+describe("legacy résumé URL", () => {
+  const OLD = "/assets/Shekhar_Kumar_Resume.pdf";
+
+  it("redirects on Vercel", () => {
+    const config = JSON.parse(readFileSync(join(process.cwd(), "vercel.json"), "utf8"));
+    expect(config.redirects).toContainEqual({ source: OLD, destination: site.resume, permanent: true });
+  });
+
+  it("redirects on Cloudflare Pages", () => {
+    const rules = readFileSync(join(process.cwd(), "public/_redirects"), "utf8");
+    expect(rules).toMatch(new RegExp(`^${OLD.replace(/\./g, "\\.")}\\s+${site.resume.replace(/\./g, "\\.")}\\s+301$`, "m"));
+  });
+});

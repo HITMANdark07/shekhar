@@ -14,7 +14,7 @@ export const site: Site = {
   bio: [
     "I'm Shekhar, a senior software engineer at Pure Billion Technologies. I've owned backends end to end, including a wedding marketplace with real-time chat at 10k+ messages a day, Stripe Connect payment flows, and an automated multi-tenant migration system.",
     "More and more of my work is the infrastructure under AI products: model routing, tool calling, retrieval, GPU inference and agent evaluation.",
-    "On my own time I build NeatCode, an open-source engine that indexes TypeScript codebases into a SQLite code graph and serves it to coding agents over MCP.",
+    "I also build NeatCode, an open-source engine that indexes TypeScript codebases into a SQLite code graph and serves it to coding agents over MCP.",
   ],
   email: "shekharkumar235838@gmail.com",
   url: "https://shekhar-fawn.vercel.app",
