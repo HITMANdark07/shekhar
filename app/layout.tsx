@@ -3,6 +3,7 @@ import { Geist, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { site } from "@/content/site";
+import { personJsonLd } from "@/lib/json-ld";
 import { themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
@@ -52,6 +53,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
         </main>
         <SiteFooter />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: personJsonLd() }}
+        />
       </body>
     </html>
   );
