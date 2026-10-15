@@ -1,0 +1,93 @@
+import type { Project } from "./types";
+
+export const projects: Project[] = [
+  {
+    slug: "neatcode",
+    title: "NeatCode",
+    tagline: "A code graph that gives coding agents 12–60× less context than grep-and-read.",
+    summary:
+      "Open-source engine that indexes TypeScript codebases into a SQLite code graph and serves it to coding agents over MCP.",
+    kind: "open-source",
+    status: "active",
+    featured: true,
+    order: 1,
+    period: { start: "2026-04" },
+    role: "Author & maintainer",
+    stack: ["TypeScript", "ts-morph", "SQLite", "MCP"],
+    metrics: [
+      { value: "3.8s", label: "to index 131k LOC" },
+      { value: "<300ms", label: "structural queries" },
+      { value: "0.49s", label: "incremental re-index" },
+      { value: "12–60×", label: "less context than grep-and-read" },
+      { value: "11", label: "MCP tools" },
+      { value: "510", label: "tests" },
+    ],
+    links: {
+      repo: "https://github.com/HITMANdark07/neatcodeai",
+      npm: ["@neatcodeai/cli", "@neatcodeai/mcp", "@neatcodeai/core"],
+    },
+    demo: "neatcode-graph",
+  },
+  {
+    slug: "gpu-inference",
+    title: "Distributed GPU inference pipeline",
+    tagline: "Real-time speech-to-image generation routed across GPU-backed pods.",
+    summary:
+      "A real-time speech-to-image pipeline that routes ComfyUI workflow requests across GPU pods through parallel queues, one job per worker.",
+    kind: "work",
+    status: "shipped",
+    order: 2,
+    role: "Architect",
+    org: "Pure Billion Technologies",
+    confidential: true,
+    stack: ["ComfyUI", "Docker", "GPU pods", "Queues"],
+    metrics: [],
+  },
+  {
+    slug: "fleet",
+    title: "Fleet",
+    tagline: "GitHub and Booking.com rebuilt as environments for agent evaluation and RL.",
+    summary:
+      "An agent evaluation and reinforcement learning platform that recreates production apps as interactive UI environments for multi-step tasks.",
+    kind: "work",
+    status: "shipped",
+    order: 3,
+    role: "Development lead",
+    org: "Pure Billion Technologies",
+    confidential: true,
+    stack: ["TypeScript", "RL environments", "Agent evaluation"],
+    metrics: [],
+  },
+  {
+    slug: "genai-platform",
+    title: "Generative AI platform",
+    tagline: "Model routing, tool calling, a custom MCP server, and RAG over vector databases.",
+    summary:
+      "A production LangChain platform with model routing, prompt orchestration, tool calling, a custom MCP server for web search, and RAG.",
+    kind: "work",
+    status: "shipped",
+    order: 4,
+    role: "Architect",
+    org: "Pure Billion Technologies",
+    confidential: true,
+    stack: ["LangChain", "MCP", "Vector databases", "RAG"],
+    metrics: [{ value: "+25%", label: "response relevance (RAG)" }],
+  },
+  {
+    slug: "ivorie",
+    title: "Ivorie",
+    tagline: "Backend for a wedding-planning marketplace: real-time chat, payments, multi-tenant migrations.",
+    summary:
+      "Owned the backend of a wedding-planning marketplace: NestJS APIs, real-time chat at 10k+ messages a day, Stripe Connect payments.",
+    kind: "work",
+    status: "shipped",
+    order: 5,
+    role: "Backend owner",
+    org: "Pure Billion Technologies",
+    stack: ["NestJS", "Expo React Native", "Next.js", "Stripe Connect", "AWS"],
+    metrics: [
+      { value: "5k+", label: "users" },
+      { value: "10k+", label: "messages a day" },
+    ],
+  },
+];

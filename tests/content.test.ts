@@ -1,0 +1,111 @@
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import { describe, expect, it } from "vitest";
+import { projects } from "@/content/projects";
+import { site } from "@/content/site";
+import { employers } from "@/content/experience";
+import {
+  formatPeriod,
+  getFeatured,
+  getProject,
+  getProjects,
+  getSelectedWork,
+  projectTag,
+} from "@/lib/projects";
+
+const PHONE = /(\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}/;
+
+describe("project registry", () => {
+  it("has unique, URL-safe slugs", () => {
+    const slugs = projects.map((p) => p.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    for (const s of slugs) expect(s).toMatch(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+  });
+
+  it("has exactly one featured project", () => {
+    expect(projects.filter((p) => p.featured)).toHaveLength(1);
+  });
+
+  it("has unique order values", () => {
+    const orders = projects.map((p) => p.order);
+    expect(new Set(orders).size).toBe(orders.length);
+  });
+
+  it("keeps summaries within 160 characters", () => {
+    for (const p of projects) expect(p.summary.length).toBeLessThanOrEqual(160);
+  });
+
+  it("has no empty metric values or labels", () => {
+    for (const p of projects)
+      for (const m of p.metrics) {
+        expect(m.value.trim()).not.toBe("");
+        expect(m.label.trim()).not.toBe("");
+      }
+  });
+
+  it("points cover and diagram paths at files in public/", () => {
+    for (const p of projects) {
+      for (const src of [p.cover?.src, p.diagram?.src]) {
+        if (src) expect(existsSync(join(process.cwd(), "public", src))).toBe(true);
+      }
+    }
+  });
+});
+
+describe("registry helpers", () => {
+  it("features NeatCode", () => {
+    expect(getFeatured().slug).toBe("neatcode");
+  });
+
+  it("orders selected work as in the spec", () => {
+    expect(getSelectedWork().map((p) => p.slug)).toEqual([
+      "gpu-inference",
+      "fleet",
+      "genai-platform",
+      "ivorie",
+    ]);
+  });
+
+  it("sorts all projects by order", () => {
+    expect(getProjects()[0].slug).toBe("neatcode");
+    expect(getProjects()).toHaveLength(5);
+  });
+
+  it("returns undefined for unknown slugs", () => {
+    expect(getProject("does-not-exist")).toBeUndefined();
+  });
+
+  it("builds a kind · status tag", () => {
+    expect(projectTag(getFeatured())).toBe("Open source · Active");
+    expect(projectTag(getProject("ivorie")!)).toBe("Work · Shipped");
+  });
+
+  it("formats periods", () => {
+    expect(formatPeriod({ start: "2022-08" })).toBe("Aug 2022 – present");
+    expect(formatPeriod({ start: "2022-02", end: "2022-08" })).toBe("Feb 2022 – Aug 2022");
+    expect(formatPeriod(undefined)).toBeUndefined();
+  });
+});
+
+describe("facts", () => {
+  it("lists the two résumé employers in order", () => {
+    expect(employers.map((e) => e.name)).toEqual([
+      "Pure Billion Technologies",
+      "Invest With Tribe",
+    ]);
+    expect(employers[0].roles[0].title).toBe("Senior Software Engineer");
+  });
+
+  it("never contains a phone number in content/", () => {
+    const dir = join(process.cwd(), "content");
+    for (const f of readdirSync(dir)) {
+      expect(readFileSync(join(dir, f), "utf8")).not.toMatch(PHONE);
+    }
+  });
+
+  it("uses the résumé email and links", () => {
+    expect(site.email).toBe("shekharkumar235838@gmail.com");
+    expect(site.links.github).toBe("https://github.com/HITMANdark07");
+    expect(site.links.linkedin).toBe("https://www.linkedin.com/in/shekhar-kumar1");
+  });
+});
