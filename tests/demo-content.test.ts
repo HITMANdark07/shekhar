@@ -4,7 +4,7 @@ import { flows } from "@/content/demos/flows";
 import { evalRun, replayOrder } from "@/content/demos/eval-matrix";
 
 describe("fleet episode (synthetic)", () => {
-  it("accumulates sub-goal rewards to exactly 1.0 at task completion", () => {
+  it("accumulates rewards to exactly 1.0 at task completion", () => {
     const totals = cumulativeRewards(fleetEpisode.steps);
     expect(totals).toHaveLength(fleetEpisode.steps.length);
     expect(totals.at(-1)).toBeCloseTo(1, 5);

@@ -40,7 +40,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       },
       {
         title: "Store a code graph in SQLite",
-        detail: "Files and symbols become nodes; imports, calls, renders and containment become edges, each tagged EXTRACTED or INFERRED so the agent knows how much to trust it.",
+        detail: "Files and symbols become nodes; imports, calls, renders and containment become edges, each tagged EXTRACTED, INFERRED or AMBIGUOUS so the agent knows how much to trust it.",
       },
       {
         title: "Re-index only what changed",
@@ -59,7 +59,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       {
         decision: "Embedded SQLite for the graph",
         alternative: "A graph database or a hosted service",
-        why: "Zero ops and local-first: the whole index ships inside an npm package and lives in the repo's .neatcode/ folder.",
+        why: "Zero ops and local-first: the engine ships as an npm package, and the index is a single file in the repo's .neatcode/ folder.",
       },
       {
         decision: "Deterministic graph queries, no LLM in the hot path",
@@ -80,7 +80,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     outcomes: [
       "131k LOC indexed in 3.8s (~35k LOC/s, single-threaded ts-morph with batched transactions).",
       "Structural queries answered in under 300ms; 12–60× less context than a grep-and-read baseline for the same query.",
-      `This portfolio's own ${siteGraph.stats.files} source files indexed in ${siteGraph.stats.indexSeconds}s to power the demo above.`,
+      `This portfolio indexed in ${siteGraph.stats.indexSeconds}s to power the demo above (${siteGraph.stats.files} linked files shown).`,
       "510 tests at a 0.68:1 test-to-code ratio, full suite green in 12s.",
     ],
     next: [
@@ -109,7 +109,7 @@ export const caseStudies: Record<string, CaseStudy> = {
         "A seeded simulation of the pattern, not production data. Jobs arrive, the router sends each to the least-loaded live pod, and every pod runs one job at a time. Kill a pod to watch its queue reroute, or change the load.",
     },
     how: [
-      { title: "Speech request arrives", detail: "The client sends the transcribed request; the API turns it into a generation job with its ComfyUI workflow." },
+      { title: "Speech request arrives", detail: "A speech request comes in and becomes a generation job with its ComfyUI workflow." },
       { title: "Router picks a queue", detail: "The router places the job on one of several parallel queues, each feeding a single GPU worker." },
       { title: "Single-concurrency workers", detail: "Each worker pulls one job, runs its workflow on its own GPU, and only then takes the next one." },
       { title: "Results flow back", detail: "The finished image returns to the client, and the worker is immediately free for the next job in its queue." },
@@ -148,7 +148,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       title: "Scrub an agent's episode",
       source: "synthetic",
       caption:
-        "A synthetic episode on a GitHub-like environment, shaped like a Fleet run. Each step pairs what the agent observed, what it did, and the feedback it earned; the curve shows cumulative reward.",
+        "A synthetic episode on a GitHub-like environment. Each step pairs what the agent observed with what it did; the task-level reward arrives only when the environment confirms the task is complete.",
     },
     how: [
       { title: "Recreate the application", detail: "Apps such as GitHub and Booking.com are rebuilt as interactive UI environments with their own state." },
@@ -263,11 +263,11 @@ export const caseStudies: Record<string, CaseStudy> = {
   "mcp-evals": {
     tldr: [
       "An open-source harness that runs the same tasks across models and MCP servers, grades the results, and records every step.",
-      "Measures task success, tool-selection accuracy, context tokens returned per tool call, steps, latency and cost.",
+      "Designed to measure task success, tool-selection accuracy, context tokens returned per tool call, steps, latency and cost (cost and real-model runs are planned for M2).",
       "Milestone 1 is merged: the core runner, deterministic graders, an offline mock provider and fake MCP server, and the `run` CLI.",
     ],
     context: [
-      "Everyone building MCP servers and agent tools claims their tool helps agents. Almost nobody measures it the same way twice.",
+      "MCP servers and agent tools are easy to claim value for and hard to compare: results depend on the model, the prompt, the limits and the task.",
       "mcp-evals makes the comparison fair and repeatable: same tasks, same prompts, same limits, pinned models and fixtures, with every tool call traced. Its first headline comparison is NeatCode against a file-reading MCP server on the same code-navigation tasks.",
     ],
     role: "Author: design spec, architecture and implementation.",
@@ -282,7 +282,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       { title: "Fresh server per task", detail: "Every task run starts a fresh MCP server process and a fresh copy of the fixture, so runs can't affect each other." },
       { title: "Own agent loop on the MCP SDK", detail: "A minimal loop sends the prompt, executes tool calls over MCP, and stops at the step, time or budget limit." },
       { title: "Graders and recorder", detail: "Deterministic graders check answers and tool use; a recorder traces every model call, tool call and token count." },
-      { title: "One results contract", detail: "A versioned results.json feeds the CLI, a GitHub Action regression gate, a public leaderboard and this portfolio." },
+      { title: "One results contract", detail: "A versioned results.json feeds the CLI today; a GitHub Action regression gate, a public leaderboard and this portfolio's embed are planned to read the same file." },
     ],
     decisions: [
       {

@@ -93,7 +93,7 @@ export const projects: Project[] = [
   {
     slug: "mcp-evals",
     title: "mcp-evals",
-    tagline: "An open-source harness that benchmarks MCP servers across models: accuracy, tool choice and context cost.",
+    tagline: "An open-source harness being built to benchmark MCP servers across models: accuracy, tool choice and context cost.",
     summary:
       "Open-source eval harness for MCP servers and agent tools. Runs the same tasks across models and servers, grades them, and records every step.",
     kind: "open-source",

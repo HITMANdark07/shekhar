@@ -26,7 +26,7 @@ describe("case studies", () => {
 describe("NeatCode outcome about this site", () => {
   it("quotes the real graph stats instead of a hard-coded number", () => {
     const line = caseStudies.neatcode.outcomes.find((o) => o.includes("This portfolio"));
-    expect(line).toContain(`${siteGraph.stats.files} source files`);
+    expect(line).toContain(`${siteGraph.stats.files} linked files shown`);
     expect(line).toContain(`${siteGraph.stats.indexSeconds}s`);
   });
 });

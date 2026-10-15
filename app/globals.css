@@ -117,6 +117,16 @@
   animation: draw-edge 700ms ease-out both;
   animation-delay: calc(var(--i) * 12ms);
 }
+@media (prefers-reduced-motion: reduce) {
+  .graph-edge {
+    animation: none;
+  }
+}
+/* Keyboard focus on a graph node: the ring plus a heavier accent stroke (SVG outlines vary by browser). */
+.graph-node:focus-visible .graph-dot {
+  stroke: var(--accent);
+  stroke-width: 3.5;
+}
 
 /* Sections ease in as they scroll into view (progressive enhancement, off for reduced motion). */
 /* Slide only, no fade: text keeps full contrast at every point of the animation. */

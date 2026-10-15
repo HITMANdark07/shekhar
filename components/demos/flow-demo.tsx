@@ -5,7 +5,7 @@ import { flows, type Flow } from "@/content/demos/flows";
 import { useDemoClock } from "@/lib/use-demo-clock";
 import { ControlButton, PlayButton } from "./play-button";
 
-function FlowView({ flow, index }: { flow: Flow; index: number }) {
+function FlowView({ flow, index, playing }: { flow: Flow; index: number; playing: boolean }) {
   const step = flow.steps[index];
   const activeAt = flow.nodes.findIndex((n) => n.id === step.at);
   return (
@@ -49,7 +49,7 @@ function FlowView({ flow, index }: { flow: Flow; index: number }) {
           style={{ left: `${((activeAt + 0.5) / flow.nodes.length) * 100}%` }}
         />
       </div>
-      <div aria-live="polite" className="rounded-lg border border-border bg-bg p-4">
+      <div aria-live={playing ? "off" : "polite"} className="rounded-lg border border-border bg-bg p-4">
         <p className="font-mono text-[0.75rem] text-fg-meta">
           step {index + 1} of {flow.steps.length}
         </p>
@@ -79,22 +79,21 @@ export function FlowDemo({ ids }: { ids: Flow["id"][] }) {
   return (
     <div ref={ref} className="space-y-4">
       {selected.length > 1 && (
-        <div role="tablist" aria-label="Views" className="flex gap-2">
+        <div role="group" aria-label="Views" className="flex gap-2">
           {selected.map((f, t) => (
             <button
               key={f.id}
-              role="tab"
               type="button"
-              aria-selected={t === tab}
+              aria-pressed={t === tab}
               onClick={() => pick(t)}
-              className="rounded-full border border-border px-3 py-1 font-mono text-[0.8125rem] text-fg-muted transition-colors duration-150 hover:border-accent aria-selected:border-accent aria-selected:bg-accent aria-selected:text-accent-fg"
+              className="rounded-full border border-border px-3 py-1 font-mono text-[0.8125rem] text-fg-muted transition-colors duration-150 hover:border-accent aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-accent-fg"
             >
               {f.label}
             </button>
           ))}
         </div>
       )}
-      <FlowView flow={flow} index={index} />
+      <FlowView flow={flow} index={index} playing={playing} />
       <div className="flex flex-wrap items-center gap-2">
         <PlayButton playing={playing} onToggle={toggle} />
         <ControlButton onClick={() => setIndex((i) => Math.max(0, i - 1))} disabled={index === 0} label="Previous step">←</ControlButton>

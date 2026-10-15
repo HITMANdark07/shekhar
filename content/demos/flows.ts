@@ -76,15 +76,15 @@ export const flows: Flow[] = [
     label: "Follow a message",
     nodes: [
       { id: "sender", label: "Couple’s app", sub: "Expo React Native" },
-      { id: "gateway", label: "WebSocket gateway", sub: "NestJS" },
-      { id: "db", label: "PostgreSQL", sub: "message stored" },
+      { id: "gateway", label: "Real-time gateway", sub: "NestJS" },
+      { id: "db", label: "Database", sub: "message stored" },
       { id: "fanout", label: "Fan-out", sub: "event-driven" },
       { id: "vendor", label: "Vendor’s app", sub: "live + push" },
     ],
     steps: [
       { at: "sender", title: "A couple messages a vendor", detail: "The mobile app sends the message over an open WebSocket connection." },
-      { at: "gateway", title: "Gateway validates", detail: "The NestJS gateway authenticates the socket and checks the sender belongs to the conversation." },
-      { at: "db", title: "Persist first", detail: "The message is written to PostgreSQL before anyone is notified, so history is the source of truth." },
+      { at: "gateway", title: "Gateway validates", detail: "The NestJS backend checks the sender belongs to the conversation." },
+      { at: "db", title: "Store the message", detail: "The message is saved so the conversation history stays consistent across devices." },
       { at: "fanout", title: "Fan out asynchronously", detail: "An event triggers delivery to every participant's open sockets, and a push notification for anyone offline." },
       { at: "vendor", title: "Delivered", detail: "The vendor sees it live, or gets a notification. The system handles 10k+ messages a day this way." },
     ],
@@ -101,7 +101,7 @@ export const flows: Flow[] = [
     ],
     steps: [
       { at: "customer", title: "Booking confirmed", detail: "A couple confirms a vendor booking in the app." },
-      { at: "checkout", title: "Pay once", detail: "The customer pays through Stripe; the platform never handles card details." },
+      { at: "checkout", title: "Pay through Stripe", detail: "The customer pays through Stripe." },
       { at: "platform", title: "Split the payment", detail: "The platform's fee is separated from the vendor's share as part of the same charge." },
       { at: "connected", title: "Credit the vendor", detail: "The vendor's share lands in their Stripe Connected Account, onboarded through the platform." },
       { at: "payout", title: "Payout", detail: "Stripe pays the vendor out to their bank on their payout schedule." },

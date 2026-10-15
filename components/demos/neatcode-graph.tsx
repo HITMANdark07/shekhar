@@ -101,7 +101,7 @@ export function NeatCodeGraph({ variant }: { variant: "compact" | "full" }) {
               key={n.id}
               transform={`translate(${n.x} ${n.y})`}
               opacity={active && !on ? 0.25 : 1}
-              className={interactiveNodes ? "cursor-pointer outline-none" : undefined}
+              className={interactiveNodes ? "graph-node cursor-pointer" : undefined}
               {...(interactiveNodes
                 ? {
                     role: "button",
@@ -119,7 +119,7 @@ export function NeatCodeGraph({ variant }: { variant: "compact" | "full" }) {
                 : {})}
             >
               {selected === n.id && <circle r={r + 5} fill="none" stroke="var(--accent)" strokeWidth={1.2} />}
-              <circle r={r} fill={style.fill} stroke={style.stroke} strokeWidth={1.4} />
+              <circle className="graph-dot" r={r} fill={style.fill} stroke={style.stroke} strokeWidth={1.4} />
               {showLabel && (
                 <text
                   y={-r - 4}

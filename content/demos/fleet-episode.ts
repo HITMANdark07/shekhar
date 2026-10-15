@@ -1,10 +1,10 @@
-/** A synthetic episode on a GitHub-like environment, shaped like a Fleet run. Not real data. */
+/** A synthetic episode on a GitHub-like environment. Not real data. Feedback is task-level: the reward arrives only when the environment confirms the task is done. */
 
 export interface EpisodeStep {
   url: string;
   observation: string;
   action: string;
-  /** Sub-goal reward granted after this action. */
+  /** Reward granted after this action (task-level: only the final step earns it). */
   reward: number;
   /** Which element of the mock UI the action targets. */
   target: "search" | "result" | "star" | "issues-tab" | "issue" | "submit";
@@ -27,7 +27,7 @@ export const fleetEpisode = {
       url: "github.local/search?q=acme%2Fwidgets",
       observation: "Search results: 3 repositories match.",
       action: 'type("acme/widgets") → click(result[0])',
-      reward: 0.2,
+      reward: 0,
       target: "result",
       state: { starred: false, stars: 41 },
     },
@@ -35,7 +35,7 @@ export const fleetEpisode = {
       url: "github.local/acme/widgets",
       observation: "Repository page. Star button shows 41.",
       action: "click(button.star)",
-      reward: 0.4,
+      reward: 0,
       target: "star",
       state: { starred: false, stars: 41 },
     },
@@ -43,7 +43,7 @@ export const fleetEpisode = {
       url: "github.local/acme/widgets",
       observation: "Starred (42). Tabs: Code · Issues · Pull requests.",
       action: "click(tab.issues)",
-      reward: 0.1,
+      reward: 0,
       target: "issues-tab",
       state: { starred: true, stars: 42 },
     },
@@ -51,7 +51,7 @@ export const fleetEpisode = {
       url: "github.local/acme/widgets/issues?sort=newest",
       observation: "Issue list, newest first: #87 “Flaky test in parser”.",
       action: "click(issue[0])",
-      reward: 0.3,
+      reward: 0,
       target: "issue",
       state: { starred: true, stars: 42 },
     },
@@ -59,7 +59,7 @@ export const fleetEpisode = {
       url: "github.local/acme/widgets/issues/87",
       observation: "Issue #87 is open. Environment checks: starred ✓, newest issue open ✓.",
       action: "submit()",
-      reward: 0,
+      reward: 1,
       target: "submit",
       state: { starred: true, stars: 42 },
     },
