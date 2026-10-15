@@ -17,7 +17,7 @@ export function SiteFooter() {
           </li>
         </ul>
         <p className="font-mono text-[0.8125rem] text-fg-meta">
-          Prefer a shell? <Link href="/terminal" className="text-accent hover:underline">/terminal</Link>
+          Prefer a shell? <Link href="/terminal" className="text-accent underline">/terminal</Link>
         </p>
       </div>
     </footer>

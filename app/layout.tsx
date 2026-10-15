@@ -7,7 +7,7 @@ import { personJsonLd } from "@/lib/json-ld";
 import { themeInitScript } from "@/lib/theme";
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "optional" });
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
@@ -17,7 +17,7 @@ const instrumentSerif = Instrument_Serif({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
-  display: "swap",
+  display: "optional",
 });
 
 export const metadata: Metadata = {

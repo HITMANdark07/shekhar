@@ -36,6 +36,13 @@ describe("ProjectCard", () => {
     expect(html).not.toContain("undefined");
   });
 
+  it("uses h3 by default and the requested heading level when given", () => {
+    expect(renderToStaticMarkup(<ProjectCard project={sparse} />)).toContain("<h3");
+    const html = renderToStaticMarkup(<ProjectCard project={sparse} headingLevel="h2" />);
+    expect(html).toContain("<h2");
+    expect(html).not.toContain("<h3");
+  });
+
   it("renders cover art as decorative", () => {
     const html = renderToStaticMarkup(
       <ProjectCard project={{ ...sparse, cover: { src: "/projects/x/cover.webp" } }} />,
