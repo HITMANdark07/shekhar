@@ -90,4 +90,19 @@ export const projects: Project[] = [
       { value: "10k+", label: "messages a day" },
     ],
   },
+  {
+    slug: "mcp-evals",
+    title: "mcp-evals",
+    tagline: "An open-source harness that benchmarks MCP servers across models: accuracy, tool choice and context cost.",
+    summary:
+      "Open-source eval harness for MCP servers and agent tools. Runs the same tasks across models and servers, grades them, and records every step.",
+    kind: "open-source",
+    status: "building",
+    order: 6,
+    period: { start: "2026-10" },
+    role: "Author",
+    stack: ["TypeScript", "MCP SDK", "zod", "Commander"],
+    metrics: [],
+    links: { repo: "https://github.com/HITMANdark07/mcp-evals" },
+  },
 ];

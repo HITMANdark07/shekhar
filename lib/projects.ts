@@ -30,8 +30,13 @@ export function getFeatured(): Project {
   return featured;
 }
 
+/** Shipped and active work for the home grid: not featured, not still being built. */
 export function getSelectedWork(): Project[] {
-  return getProjects().filter((p) => !p.featured);
+  return getProjects().filter((p) => !p.featured && p.status !== "building");
+}
+
+export function getBuilding(): Project[] {
+  return getProjects().filter((p) => p.status === "building");
 }
 
 export function projectTag(project: Project): string {

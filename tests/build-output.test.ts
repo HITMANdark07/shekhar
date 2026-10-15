@@ -50,9 +50,13 @@ describe("static export", () => {
     expect(read("index.html")).toContain('"@type":"Person"');
   });
 
+  it("has no placeholder copy on any page", () => {
+    for (const f of PAGES) expect(read(f)).not.toMatch(/coming soon|lorem ipsum/i);
+  });
+
   it("contains none of the dropped claims", () => {
     const all = PAGES.map(read).join("\n");
-    for (const banned of ["99.9%", "420ms", "fine-tuned models", "6000+", "CLEARANCE", "no frameworks"]) {
+    for (const banned of ["99.9%", "420ms", "4 fine-tuned models", "6000+", "CLEARANCE", "no frameworks"]) {
       expect(all).not.toContain(banned);
     }
   });
