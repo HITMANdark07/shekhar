@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { projects } from "@/content/projects";
@@ -107,5 +107,22 @@ describe("facts", () => {
     expect(site.email).toBe("shekharkumar235838@gmail.com");
     expect(site.links.github).toBe("https://github.com/HITMANdark07");
     expect(site.links.linkedin).toBe("https://www.linkedin.com/in/shekhar-kumar1");
+  });
+});
+
+describe("assets", () => {
+  it("ships an optimized portrait", () => {
+    const p = join(process.cwd(), "public", site.portrait.src);
+    expect(existsSync(p)).toBe(true);
+    expect(statSync(p).size).toBeLessThanOrEqual(60 * 1024);
+  });
+
+  it("ships the résumé at the linked path", () => {
+    expect(existsSync(join(process.cwd(), "public", site.resume))).toBe(true);
+  });
+
+  it("removed the old unoptimized assets", () => {
+    expect(existsSync(join(process.cwd(), "public/assets/shekhar.png"))).toBe(false);
+    expect(existsSync(join(process.cwd(), "public/assets/Shekhar_Kumar_Resume.pdf"))).toBe(false);
   });
 });
