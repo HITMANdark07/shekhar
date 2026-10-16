@@ -4,6 +4,7 @@ import { useState } from "react";
 import { createSim, killPod, metrics, revivePod, run, step, type Job } from "@/lib/sim/gpu-queue";
 import { useDemoClock } from "@/lib/use-demo-clock";
 import { FlowDemo } from "./flow-demo";
+import { GpuWiringDemo } from "./gpu-wiring-demo";
 import { ControlButton, PlayButton } from "./play-button";
 
 const LOADS = [
@@ -150,14 +151,15 @@ function RenderQueueSim() {
   );
 }
 
-/** Two views of the speech-to-image system: the story pipeline end to end, and the render tier. */
+/** Three views of the speech-to-image system; the GPU wiring leads. */
 export function GpuQueueDemo() {
-  const [view, setView] = useState<"story" | "queue">("story");
+  const [view, setView] = useState<"wiring" | "story" | "queue">("wiring");
   return (
     <div className="space-y-4">
-      <div role="group" aria-label="View" className="flex gap-2">
+      <div role="group" aria-label="View" className="flex flex-wrap gap-2">
         {(
           [
+            ["wiring", "How each GPU is wired"],
             ["story", "Life of a story"],
             ["queue", "Route the render queue"],
           ] as const
@@ -173,7 +175,7 @@ export function GpuQueueDemo() {
           </button>
         ))}
       </div>
-      {view === "story" ? <FlowDemo ids={["story-pipeline"]} /> : <RenderQueueSim />}
+      {view === "wiring" ? <GpuWiringDemo /> : view === "story" ? <FlowDemo ids={["story-pipeline"]} /> : <RenderQueueSim />}
     </div>
   );
 }

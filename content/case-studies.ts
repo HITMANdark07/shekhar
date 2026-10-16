@@ -103,10 +103,10 @@ export const caseStudies: Record<string, CaseStudy> = {
     role: "Designed and built it: the architecture, the migration from a NestJS/BullMQ stack to Python FastAPI + Celery, the queue router and workers, the live story pipeline, and the AWS deployment and operations scripts.",
     demo: {
       key: "gpu-queue",
-      title: "Life of a story · route the render queue",
+      title: "How each GPU is wired",
       source: "illustrative",
       caption:
-        "Two views of the real design. Step through one story from microphone to panels, or run a seeded simulation of the render tier: portraits go to the text-to-image pod, each scene fans out one candidate per image-to-image pod, and killing a worker requeues its job instead of losing it. Not production data.",
+        "Watch a request travel the real wiring: the FastAPI producer puts tasks on Redis queues, each Celery worker drains exactly one queue and drives exactly one ComfyUI GPU over HTTP and WebSocket, results land in MinIO and progress streams back to the client. Switch to a portrait request, step through the story pipeline, or run the render-queue simulation. Illustrative, not production data.",
     },
     how: [
       {
