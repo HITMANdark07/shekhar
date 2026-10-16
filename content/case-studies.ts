@@ -220,44 +220,73 @@ export const caseStudies: Record<string, CaseStudy> = {
   ivorie: {
     tldr: [
       "Designed and owned the backend of a wedding-planning marketplace serving 5k+ users.",
-      "Real-time chat and notifications handling 10k+ messages a day.",
-      "Stripe Connected Account payments, AWS media uploads and an automated multi-tenant migration system.",
+      "Real-time chat and notifications handling 10k+ messages a day over Socket.IO, with Redis-backed presence and push for offline users.",
+      "Stripe Connect payments: milestone installments, scheduled invoices, and vendor payouts released after funds settle.",
     ],
     context: [
-      "Ivorie connects couples with wedding vendors. That means three hard backend problems at once: people messaging each other in real time, money moving between customers, the platform and vendors, and a growing product that has to keep shipping safely.",
+      "Ivorie is a three-sided marketplace. Couples planning a wedding look for vendors; recently married couples recommend the vendors they used and earn rewards; vendors get booked and paid.",
+      "That makes the backend three products at once: a real-time messaging system between all three sides, a payments system that moves money between couples, the platform and vendors, and a fast-moving product that has to keep shipping safely across a mobile app, a web admin and a vendor portal.",
     ],
     role: "Designed and owned the backend architecture across NestJS APIs, an Expo React Native app and a Next.js admin dashboard.",
     demo: {
       key: "ivorie-flows",
       title: "Follow a message, follow the money",
       source: "illustrative",
-      caption: "Two flows through the backend, step by step. Illustrative of the architecture; no real messages, accounts or amounts.",
+      caption: "Two real flows from the codebase, step by step: how a chat message is delivered, and how a booking payment reaches a vendor. No real messages, accounts or amounts.",
     },
     how: [
-      { title: "Clear service boundaries", detail: "NestJS APIs with well-defined boundaries and database schemas behind the mobile app and the admin dashboard." },
-      { title: "Real-time messaging", detail: "Chat and notifications built for live delivery, handling 10k+ messages a day." },
-      { title: "Payments with Stripe Connect", detail: "Customer payments flow through Stripe Connected Account payment flows to vendors." },
-      { title: "Event-driven async work", detail: "Asynchronous, event-driven workflows keep slow work off the request path." },
-      { title: "Automated multi-tenant migrations", detail: "Schema and feature changes propagate safely across tenants through an automated migration system." },
+      {
+        title: "One monorepo, three apps",
+        detail: "A Turborepo holds the NestJS API, the Expo app and the Next.js admin and vendor portal, sharing one Prisma database package and zod-typed contracts, so a schema change is type-checked everywhere at once.",
+      },
+      {
+        title: "Real-time chat over Socket.IO",
+        detail: "The gateway authenticates each socket with a JWT. Redis maps every user session to its live sockets and tracks presence, so delivery works across devices and outside any single process.",
+      },
+      {
+        title: "Persist, then deliver",
+        detail: "A message is written to PostgreSQL first. Online sessions receive it instantly; anyone offline gets an Expo push notification instead, and scheduled jobs send digest emails for messages left unread. Typing indicators and read receipts ride the same socket.",
+      },
+      {
+        title: "Milestone payments on a schedule",
+        detail: "Bookings are paid in milestones. Scheduled, timezone-aware jobs generate Stripe invoices ahead of due dates and send reminder and overdue emails, so nobody chases payments by hand.",
+      },
+      {
+        title: "Payouts after settlement",
+        detail: "Once ACH funds settle, scheduled transfers send each vendor's share to their Stripe Connect account, linked to the original charge, while the platform fee stays with the platform. Recommendation commissions are credited to recently married couples as in-app rewards they can cash out.",
+      },
+      {
+        title: "The boring infrastructure",
+        detail: "Auth0 with role guards for couples, vendors and admins; secrets loaded from AWS SSM; media uploaded straight to S3 through presigned URLs; templated email through SES and SMS through Twilio; and an automated multi-tenant migration system for safe schema and feature rollouts.",
+      },
     ],
     decisions: [
       {
-        decision: "Event-driven async workflows",
-        alternative: "Doing everything inside the request",
-        why: "Kept data consistent and requests fast while the product grew.",
+        decision: "Persist the message before delivering it",
+        alternative: "Emitting first and saving afterwards",
+        why: "The database is the conversation's source of truth, so every device and every offline user sees the same history.",
       },
       {
-        decision: "Stripe Connected Accounts",
-        alternative: "Collecting payments and paying vendors manually",
-        why: "Marketplace payments with vendor accounts handled by Stripe instead of custom money movement.",
+        decision: "Presence and session mapping in Redis",
+        alternative: "An in-memory map inside the API process",
+        why: "Who is online, and on which sockets, lives outside any one server process, which is what makes push-or-deliver decisions reliable.",
       },
       {
-        decision: "Automated multi-tenant migrations",
-        alternative: "Migrating tenants by hand",
-        why: "Made schema and feature rollouts low-risk and repeatable across every tenant.",
+        decision: "Pay vendors from settled funds, linked to the source charge",
+        alternative: "Paying out the moment a customer pays",
+        why: "Bank (ACH) payments take time to settle; transferring only after settlement, and against the original charge, keeps payouts from outrunning the money.",
+      },
+      {
+        decision: "Scheduled jobs for invoices and reminders",
+        alternative: "Manual invoicing and follow-ups",
+        why: "Installments, reminders and overdue notices run on the couple's timezone without anyone tracking dates by hand.",
       },
     ],
-    outcomes: ["5k+ users on the marketplace.", "10k+ messages a day through real-time chat and notifications.", "Scalable growth with reliable data consistency and low-risk feature iteration."],
+    outcomes: [
+      "5k+ users on the marketplace.",
+      "10k+ messages a day through real-time chat and notifications.",
+      "Three apps (mobile, admin, vendor portal) shipping from one typed monorepo.",
+    ],
   },
 
   "mcp-evals": {

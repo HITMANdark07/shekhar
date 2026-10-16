@@ -140,14 +140,14 @@ describe("résumé alignment (final review)", () => {
     expect(site.bio.join(" ")).not.toMatch(/own time/i);
   });
 
-  // Technologies the résumé ties to each project (or, for mcp-evals, its public repo's
-  // package.json dependencies); card stacks may only use these.
+  // Technologies the résumé ties to each project, or that its source confirms (mcp-evals:
+  // public repo dependencies; Ivorie: the pb-ivy monorepo the owner provided).
   const RESUME_STACK: Record<string, string[]> = {
     neatcode: ["TypeScript", "ts-morph", "SQLite", "MCP"],
     "gpu-inference": ["ComfyUI", "GPU pods", "Queues"],
     fleet: ["RL environments", "Agent evaluation"],
     "genai-platform": ["LangChain", "MCP", "Vector databases", "RAG"],
-    ivorie: ["NestJS", "Expo React Native", "Next.js", "Stripe Connect", "AWS"],
+    ivorie: ["NestJS", "Expo React Native", "Next.js", "Stripe Connect", "AWS", "Socket.IO", "Redis", "PostgreSQL", "Prisma"],
     "mcp-evals": ["TypeScript", "MCP SDK", "zod", "Commander"],
   };
 

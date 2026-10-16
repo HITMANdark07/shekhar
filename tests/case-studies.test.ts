@@ -30,3 +30,19 @@ describe("NeatCode outcome about this site", () => {
     expect(line).toContain(`${siteGraph.stats.indexSeconds}s`);
   });
 });
+
+describe("Ivorie, grounded in the pb-ivy source", () => {
+  const text = JSON.stringify(caseStudies.ivorie);
+
+  it("describes the verified architecture", () => {
+    for (const fact of ["Socket.IO", "Redis", "PostgreSQL", "Expo push", "Stripe Connect", "ACH", "Turborepo"]) {
+      expect(text).toContain(fact);
+    }
+  });
+
+  it("explains the three sides of the marketplace", () => {
+    expect(text).toMatch(/couples/i);
+    expect(text).toMatch(/vendors/i);
+    expect(text).toMatch(/recently married/i);
+  });
+});

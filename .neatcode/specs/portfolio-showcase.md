@@ -33,3 +33,7 @@ Work-project rationale ("why") is inferred from the résumé's own descriptions 
 - Home: featured NeatCode card embeds the real site graph; a "Now building" strip for mcp-evals.
 - Subtle scroll reveals via CSS scroll-driven animations inside `@supports`, disabled under reduced motion.
 - About: "Currently" section with dated, real facts.
+
+## Sources update (2026-10-16)
+
+Ivorie's case study, flows and stack are now grounded in its source code (`~/Desktop/pb-ivy`, newest branch `origin/feat/24-jul`), provided by the owner: Turborepo with NestJS/Expo/Next.js, Socket.IO chat with Redis presence and Expo push, PostgreSQL via Prisma, Stripe milestone invoices, ACH-settled Connect transfers, in-app referral rewards, AWS SSM/S3/SES and Twilio. Only architecture-level facts are published — no keys, endpoints, schedules or customer data. The résumé's "multi-tenant migration system" is kept from the résumé; it is not visible in that snapshot.

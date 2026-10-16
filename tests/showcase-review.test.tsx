@@ -48,7 +48,13 @@ describe("final review fixes", () => {
   });
 
   it("avoids the most specific unsupported details", () => {
+    // PostgreSQL is now verified for Ivorie from its source (pb-ivy); the rest stay unsupported.
     const text = JSON.stringify(flows) + JSON.stringify(caseStudies["gpu-inference"]);
-    expect(text).not.toMatch(/PostgreSQL|never handles card details|transcribed/);
+    expect(text).not.toMatch(/never handles card details|transcribed/);
+  });
+
+  it("follows Ivorie's real message path: persist, check presence, deliver or push", () => {
+    const ids = flows.find((f) => f.id === "ivorie-message")!.nodes.map((n) => n.id);
+    expect(ids).toEqual(["sender", "gateway", "db", "presence", "deliver"]);
   });
 });

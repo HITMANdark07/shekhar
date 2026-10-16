@@ -80,7 +80,7 @@ export const projects: Project[] = [
   {
     slug: "ivorie",
     title: "Ivorie",
-    tagline: "Backend for a wedding-planning marketplace: real-time chat, payments, multi-tenant migrations.",
+    tagline: "Backend for a three-sided wedding marketplace: real-time chat, milestone payments, vendor payouts.",
     summary:
       "Owned the backend of a wedding-planning marketplace: NestJS APIs, real-time chat at 10k+ messages a day, Stripe Connect payments.",
     kind: "work",
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     cover: { src: "/projects/ivorie/cover.webp" },
     role: "Backend owner",
     org: "Pure Billion Technologies",
-    stack: ["NestJS", "Expo React Native", "Next.js", "Stripe Connect", "AWS"],
+    stack: ["NestJS", "Socket.IO", "Redis", "PostgreSQL", "Prisma", "Stripe Connect", "Expo React Native", "Next.js", "AWS"],
     metrics: [
       { value: "5k+", label: "users" },
       { value: "10k+", label: "messages a day" },
