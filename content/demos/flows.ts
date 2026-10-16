@@ -19,7 +19,7 @@ export interface Flow {
     | "ivorie-message"
     | "ivorie-payment"
     | "story-pipeline"
-    | "tenant-januji"
+    | "tenant-companion"
     | "tenant-notifypay"
     | "tenant-missing";
   label: string;
@@ -135,10 +135,10 @@ export const flows: Flow[] = [
     ],
   },
   {
-    id: "tenant-januji",
-    label: "Januji · AI chat",
+    id: "tenant-companion",
+    label: "AI companion · chat",
     nodes: [
-      { id: "app", label: "Januji app", sub: "Expo · Next.js" },
+      { id: "app", label: "Companion app", sub: "Expo · Next.js" },
       { id: "appid", label: "App ID", sub: "X-App-ID · cached" },
       { id: "auth", label: "Auth", sub: "JWT + session" },
       { id: "limits", label: "Guards", sub: "rate limit · plan" },
@@ -146,9 +146,9 @@ export const flows: Flow[] = [
       { id: "ai", label: "AI service", sub: "TypeScript · LangGraph" },
     ],
     steps: [
-      { at: "app", title: "A Januji user sends a chat message", detail: "The app calls the shared backend with its own tenant ID in the X-App-ID header.", trace: "POST /api/v1/... chat   X-App-ID: <januji app uuid>" },
+      { at: "app", title: "A companion-app user sends a chat message", detail: "The app calls the shared backend with its own tenant ID in the X-App-ID header.", trace: "POST /api/v1/... chat   X-App-ID: <companion app uuid>" },
       { at: "appid", title: "Identify the tenant", detail: "Middleware validates the app ID against the apps table (cached in Redis) and stores it in the request context for everything downstream." },
-      { at: "auth", title: "Authenticate the user", detail: "JWT and session checks run inside the tenant: a Januji token means nothing to NotifyPay." },
+      { at: "auth", title: "Authenticate the user", detail: "JWT and session checks run inside the tenant: a companion-app token means nothing to NotifyPay." },
       { at: "limits", title: "Rate limit and plan", detail: "A Redis-backed rate limiter (with an in-memory fallback) and the cached subscription state decide whether this plan can use the feature." },
       { at: "handler", title: "Shared AI routes", detail: "The Go AI routes load the tenant's characters and conversation, every query filtered by app_id." },
       { at: "ai", title: "LLM call, streamed back", detail: "The TypeScript service picks the provider (OpenAI, Gemini or xAI), adds memory and RAG context from pgvector, charges tokens or coins, and streams the reply over SSE.", trace: "event: token   data: {\"delta\": \"Hey! Glad you're back…\"}" },

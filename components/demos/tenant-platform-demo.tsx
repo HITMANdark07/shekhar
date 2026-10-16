@@ -27,7 +27,7 @@ export function TenantPlatformDemo() {
           </button>
         ))}
       </div>
-      {view === "request" ? <FlowDemo ids={["tenant-januji", "tenant-notifypay", "tenant-missing"]} /> : <BlueGreenDemo />}
+      {view === "request" ? <FlowDemo ids={["tenant-companion", "tenant-notifypay", "tenant-missing"]} /> : <BlueGreenDemo />}
     </div>
   );
 }

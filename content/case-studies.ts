@@ -352,7 +352,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       title: "Follow a tenant request · ship it",
       source: "illustrative",
       caption:
-        "Two views of the real system. Follow a request from Januji or NotifyPay through the shared middleware into its own tenant's data (or watch one without X-App-ID get rejected), then step through the production blue-green deploy, including what happens when a health check fails.",
+        "Two views of the real system. Follow a request from the AI companion app or NotifyPay through the shared middleware into its own tenant's data (or watch one without X-App-ID get rejected), then step through the production blue-green deploy, including what happens when a health check fails.",
     },
     how: [
       {
@@ -365,7 +365,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       },
       {
         title: "Shared modules, app-specific routes",
-        detail: "Users, auth, subscriptions and notifications live once in common modules; each app (Januji, NotifyPay) adds its own routes, handlers and YAML config on top. A new app is a new tenant, not a new backend.",
+        detail: "Users, auth, subscriptions and notifications live once in common modules; each app (an AI companion app, NotifyPay) adds its own routes, handlers and YAML config on top. A new app is a new tenant, not a new backend.",
       },
       {
         title: "A middleware chain every app gets",
@@ -412,7 +412,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       },
     ],
     outcomes: [
-      "Two apps on one backend: Januji (an Expo + Next.js AI chat app) and NotifyPay (an Android app).",
+      "Two apps on one backend: an AI companion app (Expo mobile + Next.js web) and NotifyPay (an Android app).",
       "Multi-provider AI with RAG, memory, streaming and billing, shared by every tenant.",
       "Blue-green deploys for both services: dev on every push, production on demand, with automatic rollback.",
     ],

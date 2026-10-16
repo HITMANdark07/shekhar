@@ -28,8 +28,8 @@ describe("multi-tenant AI app platform (from apps_go_backend)", () => {
 describe("tenant request flows", () => {
   const byId = new Map(flows.map((f) => [f.id, f]));
 
-  it("covers a Januji AI request, a NotifyPay request, and a request without X-App-ID", () => {
-    for (const id of ["tenant-januji", "tenant-notifypay", "tenant-missing"] as const) expect(byId.has(id)).toBe(true);
+  it("covers an AI companion request, a NotifyPay request, and a request without X-App-ID", () => {
+    for (const id of ["tenant-companion", "tenant-notifypay", "tenant-missing"] as const) expect(byId.has(id)).toBe(true);
   });
 
   it("rejects a request without X-App-ID at the app-ID middleware, before auth", () => {
@@ -59,5 +59,22 @@ describe("blue-green deploy timeline", () => {
     expect(steps.every((s) => s.state.live === "blue")).toBe(true);
     expect(steps.at(-1)!.id).toBe("rollback");
     expect(steps.at(-1)!.state).toMatchObject({ live: "blue", blue: "running", green: "stopped" });
+  });
+});
+
+describe("product naming", () => {
+  it("refers to the companion app generically, never by its product name", async () => {
+    const { readdirSync, readFileSync, statSync } = await import("node:fs");
+    const { join } = await import("node:path");
+    const walk = (dir: string): string[] =>
+      readdirSync(dir).flatMap((f) => {
+        const p = join(dir, f);
+        return statSync(p).isDirectory() ? walk(p) : [p];
+      });
+    for (const dir of ["content", "components", "app", "lib"]) {
+      for (const file of walk(join(process.cwd(), dir))) {
+        expect(readFileSync(file, "utf8"), file).not.toMatch(/j(a)?anuji/i);
+      }
+    }
   });
 });

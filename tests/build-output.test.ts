@@ -56,7 +56,7 @@ describe("static export", () => {
 
   it("contains none of the dropped claims", () => {
     const all = PAGES.map(read).join("\n");
-    for (const banned of ["99.9%", "420ms", "4 fine-tuned models", "6000+", "CLEARANCE", "no frameworks"]) {
+    for (const banned of ["99.9%", "420ms", "4 fine-tuned models", "6000+", "CLEARANCE", "no frameworks", "Januji", "januji"]) {
       expect(all).not.toContain(banned);
     }
   });

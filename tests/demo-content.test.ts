@@ -42,7 +42,7 @@ describe("flow demos", () => {
       "ivorie-message",
       "ivorie-payment",
       "story-pipeline",
-      "tenant-januji",
+      "tenant-companion",
       "tenant-missing",
       "tenant-notifypay",
     ]);
