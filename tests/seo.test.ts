@@ -78,3 +78,21 @@ describe("legacy résumé URL", () => {
     expect(rules).toMatch(new RegExp(`^${OLD.replace(/\./g, "\\.")}\\s+${site.resume.replace(/\./g, "\\.")}\\s+301$`, "m"));
   });
 });
+
+describe("canonical domain", () => {
+  it("uses www.shekharkumar.com as the site URL everywhere", () => {
+    expect(site.url).toBe("https://www.shekharkumar.com");
+    expect(robots().sitemap).toBe("https://www.shekharkumar.com/sitemap.xml");
+    for (const e of sitemap()) expect(e.url.startsWith("https://www.shekharkumar.com")).toBe(true);
+  });
+
+  it("permanently redirects the old vercel.app host to the custom domain", () => {
+    const config = JSON.parse(readFileSync(join(process.cwd(), "vercel.json"), "utf8"));
+    expect(config.redirects).toContainEqual({
+      source: "/:path*",
+      has: [{ type: "host", value: "shekhar-fawn.vercel.app" }],
+      destination: "https://www.shekharkumar.com/:path*",
+      permanent: true,
+    });
+  });
+});

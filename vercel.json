@@ -1,6 +1,17 @@
 {
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "shekhar-fawn.vercel.app"
+        }
+      ],
+      "destination": "https://www.shekharkumar.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/assets/Shekhar_Kumar_Resume.pdf",
       "destination": "/resume.pdf",
       "permanent": true

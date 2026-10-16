@@ -23,7 +23,7 @@ export const site: Site = {
     { value: "+25%", label: "answer relevance from RAG" },
   ],
   email: "shekharkumar235838@gmail.com",
-  url: "https://shekhar-fawn.vercel.app",
+  url: "https://www.shekharkumar.com",
   resume: "/resume.pdf",
   links: {
     github: "https://github.com/HITMANdark07",
