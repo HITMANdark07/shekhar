@@ -1,18 +1,23 @@
 {
- "generatedAt": "2026-10-15",
+ "generatedAt": "2026-10-16",
  "stats": {
-  "files": 48,
-  "symbols": 81,
-  "edges": 89,
-  "indexSeconds": 1.4
+  "files": 59,
+  "symbols": 100,
+  "edges": 112,
+  "indexSeconds": 1.2
  },
  "nodes": [
   {
    "id": "app/about/page.tsx",
    "label": "about/page.tsx",
    "group": "app",
-   "x": 261.3,
-   "y": 104.8,
+   "x": 321.6,
+   "y": 233.8,
+   "p3": [
+    0.017,
+    -0.451,
+    -0.26
+   ],
    "symbols": [
     "AboutPage"
    ]
@@ -21,8 +26,13 @@
    "id": "app/layout.tsx",
    "label": "layout.tsx",
    "group": "app",
-   "x": 107.0,
-   "y": 104.6,
+   "x": 464.8,
+   "y": 264.5,
+   "p3": [
+    0.345,
+    -0.574,
+    -0.61
+   ],
    "symbols": [
     "RootLayout"
    ]
@@ -31,8 +41,13 @@
    "id": "app/opengraph-image.tsx",
    "label": "opengraph-image.tsx",
    "group": "app",
-   "x": 103.1,
-   "y": 129.3,
+   "x": 506.6,
+   "y": 232.4,
+   "p3": [
+    0.401,
+    -0.132,
+    -0.664
+   ],
    "symbols": [
     "Image"
    ]
@@ -41,8 +56,13 @@
    "id": "app/page.tsx",
    "label": "page.tsx",
    "group": "app",
-   "x": 292.0,
-   "y": 134.4,
+   "x": 288.3,
+   "y": 196.5,
+   "p3": [
+    -0.124,
+    -0.144,
+    -0.113
+   ],
    "symbols": [
     "HomePage"
    ]
@@ -51,8 +71,13 @@
    "id": "app/projects/[slug]/opengraph-image.tsx",
    "label": "projects/[slug]/opengraph-image.tsx",
    "group": "app",
-   "x": 163.1,
-   "y": 146.3,
+   "x": 462.1,
+   "y": 210.1,
+   "p3": [
+    0.34,
+    -0.069,
+    -0.402
+   ],
    "symbols": [
     "generateStaticParams",
     "Image"
@@ -62,8 +87,13 @@
    "id": "app/projects/[slug]/page.tsx",
    "label": "projects/[slug]/page.tsx",
    "group": "app",
-   "x": 353.8,
-   "y": 204.5,
+   "x": 310.5,
+   "y": 133.3,
+   "p3": [
+    -0.012,
+    0.135,
+    0.335
+   ],
    "symbols": [
     "generateStaticParams",
     "generateMetadata",
@@ -75,8 +105,13 @@
    "id": "app/projects/page.tsx",
    "label": "projects/page.tsx",
    "group": "app",
-   "x": 257.5,
-   "y": 178.4,
+   "x": 411.8,
+   "y": 169.5,
+   "p3": [
+    0.267,
+    -0.212,
+    0.18
+   ],
    "symbols": [
     "ProjectsPage"
    ]
@@ -85,8 +120,13 @@
    "id": "app/robots.ts",
    "label": "robots.ts",
    "group": "app",
-   "x": 162.6,
-   "y": 82.3,
+   "x": 397.6,
+   "y": 276.0,
+   "p3": [
+    0.18,
+    -0.325,
+    -0.759
+   ],
    "symbols": [
     "robots"
    ]
@@ -95,8 +135,13 @@
    "id": "app/sitemap.ts",
    "label": "sitemap.ts",
    "group": "app",
-   "x": 199.0,
-   "y": 140.5,
+   "x": 418.0,
+   "y": 211.0,
+   "p3": [
+    0.327,
+    -0.163,
+    -0.269
+   ],
    "symbols": [
     "sitemap"
    ]
@@ -105,8 +150,13 @@
    "id": "app/terminal/page.tsx",
    "label": "terminal/page.tsx",
    "group": "app",
-   "x": 256.2,
-   "y": 28.0,
+   "x": 307.1,
+   "y": 332.0,
+   "p3": [
+    0.956,
+    -0.845,
+    0.011
+   ],
    "symbols": [
     "TerminalPage"
    ]
@@ -115,8 +165,13 @@
    "id": "components/badge.tsx",
    "label": "badge.tsx",
    "group": "components",
-   "x": 348.4,
-   "y": 177.8,
+   "x": 335.7,
+   "y": 146.7,
+   "p3": [
+    -0.038,
+    -0.014,
+    0.259
+   ],
    "symbols": [
     "Badge"
    ]
@@ -125,18 +180,88 @@
    "id": "components/button-styles.ts",
    "label": "button-styles.ts",
    "group": "components",
-   "x": 367.4,
-   "y": 116.5,
+   "x": 228.2,
+   "y": 225.5,
+   "p3": [
+    -0.299,
+    -0.164,
+    -0.371
+   ],
    "symbols": [
     "buttonClass"
+   ]
+  },
+  {
+   "id": "components/command-palette.tsx",
+   "label": "command-palette.tsx",
+   "group": "components",
+   "x": 495.5,
+   "y": 253.9,
+   "p3": [
+    0.483,
+    -0.441,
+    -0.608
+   ],
+   "symbols": [
+    "CommandPalette"
+   ]
+  },
+  {
+   "id": "components/contact-section.tsx",
+   "label": "contact-section.tsx",
+   "group": "components",
+   "x": 285.0,
+   "y": 240.5,
+   "p3": [
+    -0.143,
+    -0.234,
+    -0.472
+   ],
+   "symbols": [
+    "ContactSection"
+   ]
+  },
+  {
+   "id": "components/copy-email-button.tsx",
+   "label": "copy-email-button.tsx",
+   "group": "components",
+   "x": 225.1,
+   "y": 270.0,
+   "p3": [
+    -0.336,
+    -0.262,
+    -0.727
+   ],
+   "symbols": [
+    "CopyEmailButton"
+   ]
+  },
+  {
+   "id": "components/count-up.tsx",
+   "label": "count-up.tsx",
+   "group": "components",
+   "x": 204.1,
+   "y": 150.7,
+   "p3": [
+    -0.414,
+    0.047,
+    0.221
+   ],
+   "symbols": [
+    "CountUp"
    ]
   },
   {
    "id": "components/demos/demo-frame.tsx",
    "label": "demos/demo-frame.tsx",
    "group": "components",
-   "x": 453.5,
-   "y": 244.5,
+   "x": 257.4,
+   "y": 67.3,
+   "p3": [
+    -0.151,
+    0.525,
+    0.731
+   ],
    "symbols": [
     "DemoFrame"
    ]
@@ -145,8 +270,13 @@
    "id": "components/demos/eval-matrix-demo.tsx",
    "label": "demos/eval-matrix-demo.tsx",
    "group": "components",
-   "x": 447.1,
-   "y": 300.1,
+   "x": 146.9,
+   "y": 67.7,
+   "p3": [
+    -0.521,
+    0.552,
+    0.725
+   ],
    "symbols": [
     "EvalMatrixDemo"
    ]
@@ -155,8 +285,13 @@
    "id": "components/demos/fleet-episode-demo.tsx",
    "label": "demos/fleet-episode-demo.tsx",
    "group": "components",
-   "x": 426.3,
-   "y": 296.0,
+   "x": 169.9,
+   "y": 64.2,
+   "p3": [
+    -0.583,
+    0.667,
+    0.518
+   ],
    "symbols": [
     "Target",
     "MockPage",
@@ -168,8 +303,13 @@
    "id": "components/demos/flow-demo.tsx",
    "label": "demos/flow-demo.tsx",
    "group": "components",
-   "x": 497.3,
-   "y": 287.8,
+   "x": 112.3,
+   "y": 83.8,
+   "p3": [
+    -0.473,
+    0.695,
+    0.609
+   ],
    "symbols": [
     "FlowView",
     "FlowDemo"
@@ -179,8 +319,13 @@
    "id": "components/demos/gpu-queue-demo.tsx",
    "label": "demos/gpu-queue-demo.tsx",
    "group": "components",
-   "x": 499.7,
-   "y": 278.1,
+   "x": 124.8,
+   "y": 75.1,
+   "p3": [
+    -0.634,
+    0.53,
+    0.636
+   ],
    "symbols": [
     "JobChip",
     "initial",
@@ -191,8 +336,13 @@
    "id": "components/demos/neatcode-graph.tsx",
    "label": "demos/neatcode-graph.tsx",
    "group": "components",
-   "x": 348.1,
-   "y": 226.1,
+   "x": 308.9,
+   "y": 106.1,
+   "p3": [
+    -0.037,
+    0.439,
+    0.321
+   ],
    "symbols": [
     "NeatCodeGraph"
    ]
@@ -201,8 +351,13 @@
    "id": "components/demos/play-button.tsx",
    "label": "demos/play-button.tsx",
    "group": "components",
-   "x": 484.2,
-   "y": 302.7,
+   "x": 112.6,
+   "y": 59.6,
+   "p3": [
+    -0.63,
+    0.698,
+    0.694
+   ],
    "symbols": [
     "PlayButton",
     "ControlButton"
@@ -212,8 +367,13 @@
    "id": "components/demos/project-demo.tsx",
    "label": "demos/project-demo.tsx",
    "group": "components",
-   "x": 423.1,
-   "y": 258.1,
+   "x": 215.6,
+   "y": 88.6,
+   "p3": [
+    -0.304,
+    0.48,
+    0.545
+   ],
    "symbols": [
     "ProjectDemo"
    ]
@@ -222,8 +382,13 @@
    "id": "components/experience-list.tsx",
    "label": "experience-list.tsx",
    "group": "components",
-   "x": 263.9,
-   "y": 129.2,
+   "x": 329.1,
+   "y": 210.1,
+   "p3": [
+    0.021,
+    -0.269,
+    -0.171
+   ],
    "symbols": [
     "ExperienceList"
    ]
@@ -232,8 +397,13 @@
    "id": "components/featured-project.tsx",
    "label": "featured-project.tsx",
    "group": "components",
-   "x": 302.2,
-   "y": 176.3,
+   "x": 330.8,
+   "y": 159.4,
+   "p3": [
+    0.026,
+    0.068,
+    0.082
+   ],
    "symbols": [
     "FeaturedProject"
    ]
@@ -242,18 +412,43 @@
    "id": "components/metric-list.tsx",
    "label": "metric-list.tsx",
    "group": "components",
-   "x": 319.8,
-   "y": 175.6,
+   "x": 364.4,
+   "y": 157.7,
+   "p3": [
+    0.116,
+    -0.009,
+    0.168
+   ],
    "symbols": [
     "MetricList"
+   ]
+  },
+  {
+   "id": "components/morph.tsx",
+   "label": "morph.tsx",
+   "group": "components",
+   "x": 371.0,
+   "y": 133.0,
+   "p3": [
+    0.073,
+    -0.059,
+    0.455
+   ],
+   "symbols": [
+    "Morph"
    ]
   },
   {
    "id": "components/now-building.tsx",
    "label": "now-building.tsx",
    "group": "components",
-   "x": 330.8,
-   "y": 152.6,
+   "x": 316.0,
+   "y": 176.0,
+   "p3": [
+    -0.062,
+    -0.161,
+    0.098
+   ],
    "symbols": [
     "NowBuilding"
    ]
@@ -262,8 +457,13 @@
    "id": "components/project-card.tsx",
    "label": "project-card.tsx",
    "group": "components",
-   "x": 300.5,
-   "y": 160.1,
+   "x": 340.5,
+   "y": 166.9,
+   "p3": [
+    0.021,
+    -0.173,
+    0.183
+   ],
    "symbols": [
     "ProjectCard"
    ]
@@ -272,8 +472,13 @@
    "id": "components/project-cover.tsx",
    "label": "project-cover.tsx",
    "group": "components",
-   "x": 330.7,
-   "y": 142.9,
+   "x": 310.3,
+   "y": 163.0,
+   "p3": [
+    0.066,
+    -0.102,
+    0.222
+   ],
    "symbols": [
     "rng",
     "GraphMotif",
@@ -290,8 +495,13 @@
    "id": "components/section.tsx",
    "label": "section.tsx",
    "group": "components",
-   "x": 315.0,
-   "y": 102.0,
+   "x": 258.4,
+   "y": 226.6,
+   "p3": [
+    -0.22,
+    -0.413,
+    -0.233
+   ],
    "symbols": [
     "Section"
    ]
@@ -300,8 +510,13 @@
    "id": "components/site-footer.tsx",
    "label": "site-footer.tsx",
    "group": "components",
-   "x": 130.9,
-   "y": 94.5,
+   "x": 435.3,
+   "y": 272.1,
+   "p3": [
+    0.212,
+    -0.548,
+    -0.659
+   ],
    "symbols": [
     "SiteFooter"
    ]
@@ -310,18 +525,45 @@
    "id": "components/site-header.tsx",
    "label": "site-header.tsx",
    "group": "components",
-   "x": 92.0,
-   "y": 91.1,
+   "x": 499.0,
+   "y": 270.0,
+   "p3": [
+    0.434,
+    -0.491,
+    -0.735
+   ],
    "symbols": [
     "SiteHeader"
+   ]
+  },
+  {
+   "id": "components/system-map.tsx",
+   "label": "system-map.tsx",
+   "group": "components",
+   "x": 193.1,
+   "y": 161.9,
+   "p3": [
+    -0.374,
+    0.17,
+    0.058
+   ],
+   "symbols": [
+    "nodeWidth",
+    "edgeGeometry",
+    "SystemMap"
    ]
   },
   {
    "id": "components/terminal/commands.ts",
    "label": "terminal/commands.ts",
    "group": "components",
-   "x": 233.8,
-   "y": 103.6,
+   "x": 354.2,
+   "y": 248.6,
+   "p3": [
+    0.414,
+    -0.437,
+    -0.149
+   ],
    "symbols": [
     "helpText",
     "runCommand"
@@ -331,8 +573,13 @@
    "id": "components/terminal/terminal.tsx",
    "label": "terminal/terminal.tsx",
    "group": "components",
-   "x": 246.8,
-   "y": 59.0,
+   "x": 325.7,
+   "y": 297.9,
+   "p3": [
+    0.734,
+    -0.678,
+    -0.053
+   ],
    "symbols": [
     "Terminal"
    ]
@@ -341,34 +588,69 @@
    "id": "components/theme-toggle.tsx",
    "label": "theme-toggle.tsx",
    "group": "components",
-   "x": 28.0,
-   "y": 74.7,
+   "x": 572.0,
+   "y": 293.5,
+   "p3": [
+    0.602,
+    -0.591,
+    -0.971
+   ],
    "symbols": [
     "ThemeToggle"
+   ]
+  },
+  {
+   "id": "components/tilt-card.tsx",
+   "label": "tilt-card.tsx",
+   "group": "components",
+   "x": 250.0,
+   "y": 147.8,
+   "p3": [
+    -0.259,
+    -0.276,
+    0.388
+   ],
+   "symbols": [
+    "TiltCard"
    ]
   },
   {
    "id": "content/about.ts",
    "label": "about.ts",
    "group": "content",
-   "x": 248.8,
-   "y": 115.3,
+   "x": 351.0,
+   "y": 229.2,
+   "p3": [
+    0.202,
+    -0.481,
+    -0.112
+   ],
    "symbols": []
   },
   {
    "id": "content/case-studies.ts",
    "label": "case-studies.ts",
    "group": "content",
-   "x": 410.3,
-   "y": 232.7,
+   "x": 275.1,
+   "y": 92.7,
+   "p3": [
+    -0.102,
+    0.373,
+    0.584
+   ],
    "symbols": []
   },
   {
    "id": "content/demos/eval-matrix.ts",
    "label": "demos/eval-matrix.ts",
    "group": "content",
-   "x": 459.6,
-   "y": 332.0,
+   "x": 108.3,
+   "y": 33.8,
+   "p3": [
+    -0.616,
+    0.645,
+    1.0
+   ],
    "symbols": [
     "replayOrder"
    ]
@@ -377,8 +659,13 @@
    "id": "content/demos/fleet-episode.ts",
    "label": "demos/fleet-episode.ts",
    "group": "content",
-   "x": 399.0,
-   "y": 324.5,
+   "x": 168.1,
+   "y": 28.0,
+   "p3": [
+    -0.774,
+    0.903,
+    0.52
+   ],
    "symbols": [
     "cumulativeRewards"
    ]
@@ -387,58 +674,140 @@
    "id": "content/demos/flows.ts",
    "label": "demos/flows.ts",
    "group": "content",
-   "x": 556.8,
-   "y": 308.0,
+   "x": 28.0,
+   "y": 75.1,
+   "p3": [
+    -0.508,
+    0.97,
+    0.739
+   ],
    "symbols": []
   },
   {
    "id": "content/experience.ts",
    "label": "experience.ts",
    "group": "content",
-   "x": 297.2,
-   "y": 117.7,
+   "x": 295.5,
+   "y": 215.4,
+   "p3": [
+    -0.09,
+    -0.377,
+    -0.124
+   ],
    "symbols": []
   },
   {
    "id": "content/projects.ts",
    "label": "projects.ts",
    "group": "content",
-   "x": 220.9,
-   "y": 164.7,
+   "x": 275.4,
+   "y": 182.3,
+   "p3": [
+    -0.095,
+    0.017,
+    -0.056
+   ],
    "symbols": []
   },
   {
    "id": "content/site.ts",
    "label": "site.ts",
    "group": "content",
-   "x": 182.2,
-   "y": 115.1,
+   "x": 404.1,
+   "y": 238.2,
+   "p3": [
+    0.222,
+    -0.327,
+    -0.439
+   ],
+   "symbols": []
+  },
+  {
+   "id": "content/system-map.ts",
+   "label": "system-map.ts",
+   "group": "content",
+   "x": 105.0,
+   "y": 167.9,
+   "p3": [
+    -0.631,
+    0.291,
+    -0.053
+   ],
    "symbols": []
   },
   {
    "id": "content/types.ts",
    "label": "types.ts",
    "group": "content",
-   "x": 262.8,
-   "y": 143.5,
+   "x": 348.1,
+   "y": 195.9,
+   "p3": [
+    0.087,
+    -0.215,
+    -0.063
+   ],
    "symbols": []
+  },
+  {
+   "id": "lib/commands.ts",
+   "label": "commands.ts",
+   "group": "lib",
+   "x": 446.0,
+   "y": 224.8,
+   "p3": [
+    0.382,
+    -0.287,
+    -0.361
+   ],
+   "symbols": [
+    "buildCommands",
+    "isSubsequence",
+    "filterCommands"
+   ]
   },
   {
    "id": "lib/json-ld.ts",
    "label": "json-ld.ts",
    "group": "lib",
-   "x": 170.6,
-   "y": 124.7,
+   "x": 420.1,
+   "y": 232.3,
+   "p3": [
+    0.228,
+    -0.452,
+    -0.357
+   ],
    "symbols": [
     "personJsonLd"
+   ]
+  },
+  {
+   "id": "lib/motion.ts",
+   "label": "motion.ts",
+   "group": "lib",
+   "x": 174.9,
+   "y": 140.1,
+   "p3": [
+    -0.487,
+    -0.175,
+    0.395
+   ],
+   "symbols": [
+    "parseStat",
+    "formatStat",
+    "tiltFromPointer"
    ]
   },
   {
    "id": "lib/og.tsx",
    "label": "og.tsx",
    "group": "lib",
-   "x": 89.1,
-   "y": 149.2,
+   "x": 544.9,
+   "y": 215.3,
+   "p3": [
+    0.492,
+    0.035,
+    -0.636
+   ],
    "symbols": [
     "renderOgImage"
    ]
@@ -447,8 +816,13 @@
    "id": "lib/projects.ts",
    "label": "projects.ts",
    "group": "lib",
-   "x": 259.7,
-   "y": 155.5,
+   "x": 366.1,
+   "y": 191.8,
+   "p3": [
+    0.168,
+    -0.127,
+    -0.062
+   ],
    "symbols": [
     "getProjects",
     "getProject",
@@ -464,8 +838,13 @@
    "id": "lib/sim/gpu-queue.ts",
    "label": "sim/gpu-queue.ts",
    "group": "lib",
-   "x": 572.0,
-   "y": 281.9,
+   "x": 53.8,
+   "y": 51.9,
+   "p3": [
+    -0.892,
+    0.591,
+    0.787
+   ],
    "symbols": [
     "random",
     "createSim",
@@ -484,27 +863,57 @@
    "id": "lib/site-graph.ts",
    "label": "site-graph.ts",
    "group": "lib",
-   "x": 316.8,
-   "y": 250.7,
+   "x": 356.1,
+   "y": 74.9,
+   "p3": [
+    0.1,
+    0.704,
+    0.369
+   ],
    "symbols": [
     "neighbors",
     "highlight"
    ]
   },
   {
+   "id": "lib/theme-client.ts",
+   "label": "theme-client.ts",
+   "group": "lib",
+   "x": 561.8,
+   "y": 279.6,
+   "p3": [
+    0.63,
+    -0.624,
+    -0.829
+   ],
+   "symbols": [
+    "toggleTheme"
+   ]
+  },
+  {
    "id": "lib/theme.ts",
    "label": "theme.ts",
    "group": "lib",
-   "x": 33.6,
-   "y": 90.1,
+   "x": 525.9,
+   "y": 291.9,
+   "p3": [
+    0.515,
+    -0.757,
+    -0.802
+   ],
    "symbols": []
   },
   {
    "id": "lib/use-demo-clock.ts",
    "label": "use-demo-clock.ts",
    "group": "lib",
-   "x": 472.7,
-   "y": 294.3,
+   "x": 158.0,
+   "y": 106.5,
+   "p3": [
+    -0.508,
+    0.411,
+    0.424
+   ],
    "symbols": [
     "subscribeReducedMotion",
     "usePrefersReducedMotion",
@@ -613,6 +1022,22 @@
   },
   {
    "source": "app/page.tsx",
+   "target": "components/contact-section.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "components/count-up.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
    "target": "components/experience-list.tsx",
    "kinds": [
     "imports",
@@ -646,6 +1071,14 @@
   {
    "source": "app/page.tsx",
    "target": "components/section.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/page.tsx",
+   "target": "components/system-map.tsx",
    "kinds": [
     "imports",
     "renders"
@@ -722,6 +1155,22 @@
   },
   {
    "source": "app/projects/[slug]/page.tsx",
+   "target": "components/morph.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/projects/[slug]/page.tsx",
+   "target": "components/project-cover.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "app/projects/[slug]/page.tsx",
    "target": "content/case-studies.ts",
    "kinds": [
     "imports"
@@ -779,6 +1228,68 @@
    "kinds": [
     "imports",
     "renders"
+   ]
+  },
+  {
+   "source": "components/command-palette.tsx",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/command-palette.tsx",
+   "target": "lib/commands.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/command-palette.tsx",
+   "target": "lib/theme-client.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/contact-section.tsx",
+   "target": "components/button-styles.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/contact-section.tsx",
+   "target": "components/copy-email-button.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/contact-section.tsx",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/count-up.tsx",
+   "target": "lib/motion.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
+   "source": "components/count-up.tsx",
+   "target": "lib/use-demo-clock.ts",
+   "kinds": [
+    "calls",
+    "imports"
    ]
   },
   {
@@ -1034,7 +1545,23 @@
   },
   {
    "source": "components/project-card.tsx",
+   "target": "components/morph.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/project-card.tsx",
    "target": "components/project-cover.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/project-card.tsx",
+   "target": "components/tilt-card.tsx",
    "kinds": [
     "imports",
     "renders"
@@ -1071,6 +1598,14 @@
   },
   {
    "source": "components/site-header.tsx",
+   "target": "components/command-palette.tsx",
+   "kinds": [
+    "imports",
+    "renders"
+   ]
+  },
+  {
+   "source": "components/site-header.tsx",
    "target": "components/theme-toggle.tsx",
    "kinds": [
     "imports",
@@ -1081,6 +1616,28 @@
    "source": "components/site-header.tsx",
    "target": "content/site.ts",
    "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/system-map.tsx",
+   "target": "content/projects.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/system-map.tsx",
+   "target": "content/system-map.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/system-map.tsx",
+   "target": "lib/use-demo-clock.ts",
+   "kinds": [
+    "calls",
     "imports"
    ]
   },
@@ -1115,8 +1672,16 @@
   },
   {
    "source": "components/theme-toggle.tsx",
-   "target": "lib/theme.ts",
+   "target": "lib/theme-client.ts",
    "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "components/tilt-card.tsx",
+   "target": "lib/motion.ts",
+   "kinds": [
+    "calls",
     "imports"
    ]
   },
@@ -1156,6 +1721,21 @@
    ]
   },
   {
+   "source": "lib/commands.ts",
+   "target": "content/site.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "lib/commands.ts",
+   "target": "lib/projects.ts",
+   "kinds": [
+    "calls",
+    "imports"
+   ]
+  },
+  {
    "source": "lib/json-ld.ts",
    "target": "content/site.ts",
    "kinds": [
@@ -1179,6 +1759,13 @@
   {
    "source": "lib/projects.ts",
    "target": "content/types.ts",
+   "kinds": [
+    "imports"
+   ]
+  },
+  {
+   "source": "lib/theme-client.ts",
+   "target": "lib/theme.ts",
    "kinds": [
     "imports"
    ]

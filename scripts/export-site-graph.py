@@ -79,6 +79,41 @@ def layout(ids, edges, seed=7, iterations=400):
     }
 
 
+def layout3d(ids, edges, seed=11, iterations=300):
+    """Fruchterman-Reingold in three dimensions, normalised to the unit cube [-1, 1]^3."""
+    rnd = random.Random(seed)
+    pos = {i: [rnd.uniform(-1, 1) for _ in range(3)] for i in ids}
+    k = (8.0 / max(len(ids), 1)) ** (1 / 3)
+    temp = 0.3
+    for _ in range(iterations):
+        disp = {i: [0.0, 0.0, 0.0] for i in ids}
+        for a in ids:
+            for b in ids:
+                if a == b:
+                    continue
+                d = [pos[a][c] - pos[b][c] for c in range(3)]
+                dist = max(math.sqrt(sum(v * v for v in d)), 0.01)
+                f = k * k / dist
+                for c in range(3):
+                    disp[a][c] += d[c] / dist * f
+        for s_, t in edges:
+            d = [pos[s_][c] - pos[t][c] for c in range(3)]
+            dist = max(math.sqrt(sum(v * v for v in d)), 0.01)
+            f = dist * dist / k
+            for c in range(3):
+                disp[s_][c] -= d[c] / dist * f
+                disp[t][c] += d[c] / dist * f
+        for i in ids:
+            for c in range(3):
+                disp[i][c] -= pos[i][c] * 0.08  # gravity toward the centre
+            dist = max(math.sqrt(sum(v * v for v in disp[i])), 0.01)
+            for c in range(3):
+                pos[i][c] += disp[i][c] / dist * min(dist, temp)
+        temp *= 0.985
+    extent = max(abs(v) for p in pos.values() for v in p) or 1
+    return {i: [round(v / extent, 3) for v in p] for i, p in pos.items()}
+
+
 def main():
     seconds = sync_seconds()
     db = sqlite3.connect(f"file:{DB}?mode=ro", uri=True)
@@ -103,6 +138,7 @@ def main():
     linked = {f for pair in pair_kinds for f in pair}
     files = [f for f in files if f in linked]
     pos = layout(files, list(pair_kinds))
+    pos3 = layout3d(files, list(pair_kinds))
     graph = {
         "generatedAt": date.today().isoformat(),
         "stats": {
@@ -118,6 +154,7 @@ def main():
                 "group": group_of(f),
                 "x": pos[f][0],
                 "y": pos[f][1],
+                "p3": pos3[f],
                 "symbols": symbols[f],
             }
             for f in files

@@ -6,6 +6,8 @@ export interface GraphNode {
   group: GraphGroup | string;
   x: number;
   y: number;
+  /** 3D layout position inside the unit cube, for the 3D view. */
+  p3?: [number, number, number];
   symbols: string[];
 }
 
