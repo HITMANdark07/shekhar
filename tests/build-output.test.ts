@@ -22,7 +22,7 @@ describe("static export", () => {
     expect(existsSync(join(OUT, f))).toBe(true);
   });
 
-  it.each(["sitemap.xml", "robots.txt", "resume.pdf", "about/portrait.webp", "icon.svg", "apple-icon.png", "_headers"])(
+  it.each(["sitemap.xml", "robots.txt", "resume.pdf", "about/portrait.webp", "icon.svg", "apple-icon.png", "_headers", "BingSiteAuth.xml"])(
     "emits %s",
     (f) => expect(existsSync(join(OUT, f))).toBe(true),
   );
