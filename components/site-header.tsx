@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/content/site";
+import { CommandPalette } from "./command-palette";
 import { ThemeToggle } from "./theme-toggle";
 
 export function SiteHeader() {
@@ -21,6 +22,9 @@ export function SiteHeader() {
               <a href={site.resume} className="hover:text-fg">
                 Résumé<span aria-hidden="true"> ↗</span>
               </a>
+            </li>
+            <li className="empty:hidden">
+              <CommandPalette />
             </li>
             <li>
               <ThemeToggle />

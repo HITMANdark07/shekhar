@@ -1,26 +1,12 @@
 "use client";
 
-import { THEME_STORAGE_KEY } from "@/lib/theme";
+import { toggleTheme } from "@/lib/theme-client";
 
 export function ThemeToggle() {
-  function toggle() {
-    const root = document.documentElement;
-    const current =
-      root.dataset.theme ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    const next = current === "dark" ? "light" : "dark";
-    root.dataset.theme = next;
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, next);
-    } catch {
-      // Storage blocked: the choice lasts for this page view only.
-    }
-  }
-
   return (
     <button
       type="button"
-      onClick={toggle}
+      onClick={toggleTheme}
       aria-label="Toggle colour theme"
       className="grid size-8 place-items-center rounded-md text-fg-muted transition-colors duration-150 hover:text-fg"
     >

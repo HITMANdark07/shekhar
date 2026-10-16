@@ -3,7 +3,9 @@ import type { Project } from "@/content/types";
 import { projectTag } from "@/lib/projects";
 import { Badge } from "./badge";
 import { MetricList } from "./metric-list";
+import { Morph } from "./morph";
 import { ProjectCover } from "./project-cover";
+import { TiltCard } from "./tilt-card";
 
 export function ProjectCard({
   project,
@@ -13,8 +15,15 @@ export function ProjectCard({
   headingLevel?: "h2" | "h3";
 }) {
   return (
-    <article className="relative flex flex-col overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-150 hover:border-accent">
-      <ProjectCover project={project} className="h-36" />
+    <TiltCard>
+    <article className="relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-150 hover:border-accent">
+      <div className="overflow-hidden">
+        <Morph name={`cover-${project.slug}`}>
+          <div className="cover-zoom">
+            <ProjectCover project={project} className="h-36" />
+          </div>
+        </Morph>
+      </div>
       <div className="flex flex-1 flex-col p-5">
         <Badge>{projectTag(project)}</Badge>
         <Heading className="mt-1 font-serif text-2xl">
@@ -31,5 +40,6 @@ export function ProjectCard({
         )}
       </div>
     </article>
+    </TiltCard>
   );
 }

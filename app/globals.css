@@ -157,3 +157,116 @@
     filter: invert(0.9) hue-rotate(180deg);
   }
 }
+
+/* Interactive cards: cursor spotlight + gentle tilt. */
+.tilt-card {
+  --mx: 50%;
+  --my: 50%;
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  height: 100%;
+  border-radius: 0.75rem;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 180ms ease-out;
+}
+.tilt-card::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(420px circle at var(--mx) var(--my), color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%);
+  transition: opacity 200ms ease-out;
+}
+.tilt-card:hover::after {
+  opacity: 1;
+}
+.tilt-card .cover-zoom {
+  transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.tilt-card:hover .cover-zoom {
+  transform: scale(1.04);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card {
+    transform: none;
+  }
+  .tilt-card:hover .cover-zoom {
+    transform: none;
+  }
+}
+
+/* Route morphs (React <ViewTransition>): smooth, short; off for reduced motion. */
+::view-transition-group(*) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Case-study reading progress: a hairline that fills as you scroll (no JavaScript). */
+.reading-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 40;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+@supports (animation-timeline: scroll()) {
+  .reading-progress {
+    animation: reading-progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+@supports not (animation-timeline: scroll()) {
+  .reading-progress {
+    display: none;
+  }
+}
+@keyframes reading-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Hero system map: packets travel along edges via SVG <animateMotion>; nodes glow on hover. */
+.map-node rect {
+  transition: fill 160ms ease-out, stroke 160ms ease-out;
+}
+.map-node:hover rect,
+.map-node:focus-visible rect,
+.map-node[data-active="true"] rect {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+.map-node:hover text,
+.map-node:focus-visible text,
+.map-node[data-active="true"] text {
+  fill: var(--accent-fg);
+}
+
+/* Spot illustrations drift a few pixels while their section is hovered (no unprompted looping); still under reduced motion. */
+@keyframes float-gently {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :hover > * > .float-gently,
+  :hover > .float-gently {
+    animation: float-gently 3s ease-in-out infinite;
+  }
+}
