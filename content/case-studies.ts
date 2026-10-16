@@ -92,43 +92,89 @@ export const caseStudies: Record<string, CaseStudy> = {
 
   "gpu-inference": {
     tldr: [
-      "Real-time speech-to-image generation orchestrated across multiple GPU-backed pods.",
-      "Requests are routed into parallel queues; each worker executes exactly one ComfyUI workflow at a time.",
-      "Capacity scales by adding pods to the pool rather than packing more work onto each GPU.",
+      "Live narration in, illustrated story panels out: someone tells a story and its characters and scenes are drawn as it unfolds.",
+      "Each scene fans out across parallel GPU pods as competing candidates, rendered in about one job's time, with progress streamed live to the browser.",
+      "Designed and built end to end: the Python FastAPI + Celery rewrite, the pod router, the live story pipeline and the AWS GPU deployment, with 115 tests.",
     ],
     context: [
-      "The product turns a spoken request into a generated image while the user waits. Each request runs a ComfyUI workflow: a heavy, long-running GPU job, very different from a typical millisecond API call.",
-      "Running several workflows on one GPU at once makes every one of them slower and less predictable, so the pipeline needed to spread work across a fleet of GPU pods without overloading any single one.",
+      "The product turns a spoken story into illustrations in real time. Audio streams in (Hindi is translated to English on the fly), a language model decides which characters exist and what each scene shows, and image models draw character portraits and multi-character scene panels that stay consistent from panel to panel.",
+      "The render tier is the hard part. ComfyUI workflows are heavy, long-running GPU jobs, nothing like a millisecond API call. The system needed one job per GPU at a time, several candidates per scene so the best one can be kept, progress people can actually watch, and a GPU fleet that can be switched on and off to control cost.",
     ],
-    role: "Architected the pipeline: request routing, the queueing model and the worker execution model.",
+    role: "Designed and built it: the architecture, the migration from a NestJS/BullMQ stack to Python FastAPI + Celery, the queue router and workers, the live story pipeline, and the AWS deployment and operations scripts.",
     demo: {
       key: "gpu-queue",
-      title: "Route the render queue",
+      title: "Life of a story · route the render queue",
       source: "illustrative",
       caption:
-        "A seeded simulation of the pattern, not production data. Jobs arrive, the router sends each to the least-loaded live pod, and every pod runs one job at a time. Kill a pod to watch its queue reroute, or change the load.",
+        "Two views of the real design. Step through one story from microphone to panels, or run a seeded simulation of the render tier: portraits go to the text-to-image pod, each scene fans out one candidate per image-to-image pod, and killing a worker requeues its job instead of losing it. Not production data.",
     },
     how: [
-      { title: "Speech request arrives", detail: "A speech request comes in and becomes a generation job with its ComfyUI workflow." },
-      { title: "Router picks a queue", detail: "The router places the job on one of several parallel queues, each feeding a single GPU worker." },
-      { title: "Single-concurrency workers", detail: "Each worker pulls one job, runs its workflow on its own GPU, and only then takes the next one." },
-      { title: "Results flow back", detail: "The finished image returns to the client, and the worker is immediately free for the next job in its queue." },
+      {
+        title: "Stream the narration",
+        detail: "The browser captures microphone audio with an AudioWorklet (16 kHz PCM) and streams it over a WebSocket to a FastAPI session; Sarvam's streaming API turns the speech, including Hindi, into English text.",
+      },
+      {
+        title: "An LLM directs each scene",
+        detail: "An utterance buffer flushes complete thoughts to a scene director (OpenAI gpt-4o-mini or a self-hosted Qwen3 on vLLM) that registers new characters and decides when a scene is ready to draw.",
+      },
+      {
+        title: "The producer fans out",
+        detail: "FastAPI writes job rows to PostgreSQL and dispatches Celery tasks: character portraits go to a single text-to-image queue, and each scene panel fans out as one candidate per image-to-image pod, each with its own seed and the characters' reference images.",
+      },
+      {
+        title: "An in-flight-aware router",
+        detail: "A Redis-backed router counts in-flight jobs per pod and orders pods least-busy first, rotating ties, so back-to-back requests land on different GPUs and adding a pod adds a candidate automatically.",
+      },
+      {
+        title: "One job per GPU, never lost",
+        detail: "Each Celery worker drives exactly one ComfyUI pod with concurrency 1, prefetch 1 and acks_late, so a crashed worker's job is redelivered rather than dropped. Reference images are deduplicated per pod by content hash, and results land in MinIO.",
+      },
+      {
+        title: "Progress you can watch",
+        detail: "Workers publish progress on Redis pub/sub; the API streams it to the browser over SSE and WebSocket events, multiplexing every candidate in a batch into one stream.",
+      },
+      {
+        title: "A GPU fleet on AWS",
+        detail: "A central EC2 instance runs the API and workers behind an ALB; four GPU instances on private subnets run only ComfyUI from a pinned AMI. Scripts start the fleet and warm every model, and on shutdown drain Celery before stopping the GPUs.",
+      },
     ],
     decisions: [
       {
-        decision: "One job per worker at a time",
-        alternative: "Several concurrent workflows per GPU",
-        why: "Generation jobs compete for GPU memory and compute; isolating them keeps each job's latency predictable.",
+        decision: "One queue per pod, behind an in-flight-aware router",
+        alternative: "One shared queue every worker pulls from",
+        why: "A scene's candidates must land on different GPUs to render in parallel; per-pod queues make placement explicit, and the router keeps load even.",
       },
       {
-        decision: "Parallel queues behind a router",
-        alternative: "One shared queue for every worker",
-        why: "Per-worker queues make placement explicit and let the pool grow horizontally by adding pods.",
+        decision: "Concurrency 1, prefetch 1, acks_late",
+        alternative: "Several workflows per GPU, acknowledged on receipt",
+        why: "Heavy workflows compete for GPU memory, so one at a time keeps each job predictable; acknowledging late means a crash redelivers the job instead of losing it.",
+      },
+      {
+        decision: "Fan candidates out in parallel",
+        alternative: "Rendering one image at a time",
+        why: "Three idle pods produce three options in about one job's wall-clock time, at three times the GPU cost, and the best one is kept.",
+      },
+      {
+        decision: "Push progress over Redis pub/sub and SSE",
+        alternative: "Clients polling job status",
+        why: "People watch panels fill in live, and one batch stream carries every candidate.",
+      },
+      {
+        decision: "Rewrite in FastAPI + Celery, keeping the schema",
+        alternative: "Extending the NestJS/BullMQ stack",
+        why: "The existing PostgreSQL schema and storage layout were preserved, and the new stack used its own Redis database, so the cutover could run alongside the old one.",
+      },
+      {
+        decision: "GPU hosts run only ComfyUI",
+        alternative: "Celery workers on every GPU machine (the earlier topology)",
+        why: "GPU machines stay stateless, so the whole fleet can be started, warmed, drained and stopped by script to control cost.",
       },
     ],
     outcomes: [
-      "A real-time pipeline orchestrating multiple GPU-backed pods.",
-      "Scalable parallel inference: throughput grows with the number of workers instead of degrading under contention.",
+      "A live narration-to-illustration pipeline: speech in, character portraits and scene panels out.",
+      "Scene candidates rendered in parallel across GPU pods in about one job's time.",
+      "Production on AWS: four 96 GB RTX PRO 6000 GPU instances behind a central API and worker host, started, warmed and drained by script.",
+      "115 tests across the producer, the workers and the image-generation package.",
     ],
   },
 

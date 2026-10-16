@@ -36,8 +36,13 @@ describe("flow demos", () => {
     }
   });
 
-  it("covers the generative AI request and both Ivorie views", () => {
-    expect(flows.map((f) => f.id).sort()).toEqual(["genai-request", "ivorie-message", "ivorie-payment"]);
+  it("covers the generative AI request, both Ivorie views and the story pipeline", () => {
+    expect(flows.map((f) => f.id).sort()).toEqual(["genai-request", "ivorie-message", "ivorie-payment", "story-pipeline"]);
+  });
+
+  it("traces the live story pipeline from microphone to panels", () => {
+    const ids = flows.find((f) => f.id === "story-pipeline")!.nodes.map((n) => n.id);
+    expect(ids).toEqual(["mic", "stt", "director", "dispatch", "gpus", "panels"]);
   });
 
   it("never shows invented money amounts or fee percentages", () => {

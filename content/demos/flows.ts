@@ -14,7 +14,7 @@ export interface FlowStep {
 }
 
 export interface Flow {
-  id: "genai-request" | "ivorie-message" | "ivorie-payment";
+  id: "genai-request" | "ivorie-message" | "ivorie-payment" | "story-pipeline";
   label: string;
   nodes: FlowNode[];
   steps: FlowStep[];
@@ -105,6 +105,26 @@ export const flows: Flow[] = [
       { at: "settle", title: "Wait for settlement", detail: "Bank (ACH) payments take time; the platform records each charge once its funds have settled." },
       { at: "transfer", title: "Pay the vendor", detail: "A scheduled transfer sends the vendor's share to their Stripe Connect account, linked to the original charge; the platform fee stays behind." },
       { at: "reward", title: "Thank the recommender", detail: "If a recently married couple recommended this vendor, their commission is credited as in-app rewards they can cash out." },
+    ],
+  },
+  {
+    id: "story-pipeline",
+    label: "Life of a story",
+    nodes: [
+      { id: "mic", label: "Narrator’s mic", sub: "AudioWorklet · 16 kHz" },
+      { id: "stt", label: "Speech-to-text", sub: "Sarvam · Hindi → English" },
+      { id: "director", label: "Scene director", sub: "LLM · characters + scenes" },
+      { id: "dispatch", label: "Producer", sub: "FastAPI · Celery" },
+      { id: "gpus", label: "GPU pods", sub: "ComfyUI · one job each" },
+      { id: "panels", label: "Live panels", sub: "SSE · WebSocket" },
+    ],
+    steps: [
+      { at: "mic", title: "Someone tells a story", detail: "The browser captures the microphone with an AudioWorklet and streams 16 kHz PCM audio over a WebSocket to a FastAPI session.", trace: '{ "type": "audio", "format": "pcm16", "sampleRate": 16000, "chunkMs": 100 }' },
+      { at: "stt", title: "Speech becomes text", detail: "The session forwards audio to Sarvam's streaming API, which transcribes it, translating Hindi narration into English on the fly.", trace: '{ "transcript": "The old king called his three daughters…", "language_code": "hi-IN", "is_final": true }' },
+      { at: "director", title: "An LLM directs the scene", detail: "An utterance buffer flushes complete thoughts to the scene director (gpt-4o-mini, or Qwen3 on vLLM), which registers new characters and decides when a panel is ready.", trace: '{ "new_characters": ["king", "youngest daughter"], "scene_ready": true }' },
+      { at: "dispatch", title: "Fan out the work", detail: "New characters get a portrait on the text-to-image queue; the scene becomes one candidate per image-to-image pod, each with its own seed and the characters' reference images.", trace: '{ "t2i": 2, "i2i_batch": { "candidates": 3, "refs": 2 } }' },
+      { at: "gpus", title: "GPUs render in parallel", detail: "Each Celery worker drives one ComfyUI pod, one job at a time. Candidates render side by side, so a scene takes about one job's time.", trace: '{ "pod1": "45%", "pod2": "52%", "pod3": "38%" }' },
+      { at: "panels", title: "Panels appear live", detail: "Workers publish progress on Redis pub/sub; the browser watches every candidate fill in and the story's panels appear as it is told." },
     ],
   },
 ];

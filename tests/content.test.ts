@@ -141,10 +141,10 @@ describe("résumé alignment (final review)", () => {
   });
 
   // Technologies the résumé ties to each project, or that its source confirms (mcp-evals:
-  // public repo dependencies; Ivorie: the pb-ivy monorepo the owner provided).
+  // public repo dependencies; Ivorie: the pb-ivy monorepo; GPU pipeline: the img2img repo).
   const RESUME_STACK: Record<string, string[]> = {
     neatcode: ["TypeScript", "ts-morph", "SQLite", "MCP"],
-    "gpu-inference": ["ComfyUI", "GPU pods", "Queues"],
+    "gpu-inference": ["Python", "FastAPI", "Celery", "Redis", "PostgreSQL", "MinIO", "ComfyUI", "WebSockets", "AWS EC2 GPUs"],
     fleet: ["RL environments", "Agent evaluation"],
     "genai-platform": ["LangChain", "MCP", "Vector databases", "RAG"],
     ivorie: ["NestJS", "Expo React Native", "Next.js", "Stripe Connect", "AWS", "Socket.IO", "Redis", "PostgreSQL", "Prisma"],

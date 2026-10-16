@@ -46,3 +46,20 @@ describe("Ivorie, grounded in the pb-ivy source", () => {
     expect(text).toMatch(/recently married/i);
   });
 });
+
+describe("Speech-to-image pipeline, grounded in the img2img source", () => {
+  const text = JSON.stringify(caseStudies["gpu-inference"]);
+
+  it("describes the verified architecture", () => {
+    for (const fact of ["FastAPI", "Celery", "Redis", "ComfyUI", "Sarvam", "MinIO", "SSE", "acks_late", "AWS"]) {
+      expect(text).toContain(fact);
+    }
+  });
+
+  it("is no longer marked confidential and credits the build", () => {
+    const p = projects.find((x) => x.slug === "gpu-inference")!;
+    expect(p.confidential).toBeFalsy();
+    expect(p.period?.start).toBe("2026-08");
+    expect(caseStudies["gpu-inference"].role).toMatch(/designed and built/i);
+  });
+});
