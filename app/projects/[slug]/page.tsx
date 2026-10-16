@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/badge";
 import { ProjectDemo } from "@/components/demos/project-demo";
+import { Morph } from "@/components/morph";
+import { ProjectCover } from "@/components/project-cover";
 import { MetricList } from "@/components/metric-list";
 import { caseStudies } from "@/content/case-studies";
 import { formatPeriod, getProject, getProjects, projectTag } from "@/lib/projects";
@@ -53,6 +55,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
 
   return (
     <article>
+      <div className="reading-progress" aria-hidden="true" />
       <p className="text-sm">
         <Link href="/projects" className="text-fg-muted hover:text-fg">
           <span aria-hidden="true">← </span>All projects
@@ -64,6 +67,12 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
         <h1 className="mt-2 text-balance font-serif text-[clamp(2.5rem,6vw,4rem)] leading-[1.02]">{project.title}</h1>
         <p className="mt-4 text-lg text-fg-muted">{project.tagline}</p>
       </header>
+
+      <div className="mt-8 overflow-hidden rounded-2xl border border-border">
+        <Morph name={`cover-${project.slug}`}>
+          <ProjectCover project={project} className="aspect-[16/5] h-auto" preload />
+        </Morph>
+      </div>
 
       <dl className="mt-8 grid max-w-3xl gap-4 border-y border-border py-5 sm:grid-cols-3">
         {facts.map(([label, value]) => (

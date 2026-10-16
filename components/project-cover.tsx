@@ -124,7 +124,16 @@ const MOTIFS: Record<string, () => React.ReactNode> = {
   "mcp-evals": MatrixMotif,
 };
 
-export function ProjectCover({ project, className = "" }: { project: Project; className?: string }) {
+export function ProjectCover({
+  project,
+  className = "",
+  preload = false,
+}: {
+  project: Project;
+  className?: string;
+  /** Above-the-fold banners: preload so the image doesn't delay LCP. */
+  preload?: boolean;
+}) {
   if (project.cover) {
     return (
       <Image
@@ -132,6 +141,7 @@ export function ProjectCover({ project, className = "" }: { project: Project; cl
         alt=""
         width={1200}
         height={630}
+        preload={preload}
         className={`cover-art w-full object-cover ${className}`}
       />
     );
