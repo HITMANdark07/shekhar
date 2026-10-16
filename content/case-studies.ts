@@ -332,6 +332,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       "5k+ users on the marketplace.",
       "10k+ messages a day through real-time chat and notifications.",
       "Three apps (mobile, admin, vendor portal) shipping from one typed monorepo.",
+      "Live: the iOS app is on the App Store, with the web experience and vendor sign-up at planwithivorie.com.",
     ],
   },
 

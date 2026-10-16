@@ -15,7 +15,8 @@ import {
   projectTag,
 } from "@/lib/projects";
 
-const PHONE = /(\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}/;
+// Indian mobile numbers, but not digits glued to letters or slashes (IDs in URLs like id6748675158).
+const PHONE = /(?<![\w/])(\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}(?!\d)/;
 
 describe("project registry", () => {
   it("has unique, URL-safe slugs", () => {
@@ -91,6 +92,14 @@ describe("registry helpers", () => {
     expect(formatPeriod({ start: "2022-08" })).toBe("Aug 2022 – present");
     expect(formatPeriod({ start: "2022-02", end: "2022-08" })).toBe("Feb 2022 – Aug 2022");
     expect(formatPeriod(undefined)).toBeUndefined();
+  });
+});
+
+describe("phone guard", () => {
+  it("catches real numbers in both formats and ignores store IDs", () => {
+    expect("call 8409209072").toMatch(PHONE);
+    expect('"+91 84092 09072"').toMatch(PHONE);
+    expect("https://apps.apple.com/us/app/ivorie/id6748675158").not.toMatch(PHONE);
   });
 });
 

@@ -31,7 +31,18 @@ export interface Project {
   stack: string[];
   /** First 3 are shown on cards. */
   metrics: Metric[];
-  links?: { repo?: string; npm?: string[]; demo?: string; docs?: string };
+  links?: {
+    repo?: string;
+    npm?: string[];
+    demo?: string;
+    docs?: string;
+    /** Live product website. */
+    website?: string;
+    /** iOS App Store listing. */
+    appStore?: string;
+    /** Any other public links, e.g. a vendor sign-up page. */
+    more?: { label: string; href: string }[];
+  };
   /** Decorative art, rendered with alt="". Path relative to public/. */
   cover?: { src: string };
   /** Real diagrams only (Part 2). Path relative to public/. */

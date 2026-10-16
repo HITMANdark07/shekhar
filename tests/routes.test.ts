@@ -57,3 +57,20 @@ describe("/projects/[slug]", () => {
     await expect(ProjectPage(props("does-not-exist") as never)).rejects.toThrow();
   });
 });
+
+describe("Ivorie live links", () => {
+  it("records the live website, App Store listing and vendor page", () => {
+    const ivorie = projects.find((p) => p.slug === "ivorie")!;
+    expect(ivorie.links?.website).toBe("https://planwithivorie.com/");
+    expect(ivorie.links?.appStore).toBe("https://apps.apple.com/us/app/ivorie/id6748675158");
+    expect(ivorie.links?.more).toContainEqual({ label: "Vendor sign-up", href: "https://planwithivorie.com/vendor" });
+  });
+
+  it("puts the live links up front on the case study", async () => {
+    const html = renderToStaticMarkup(await ProjectPage(props("ivorie") as never));
+    expect(html).toContain('href="https://planwithivorie.com/"');
+    expect(html).toContain('href="https://apps.apple.com/us/app/ivorie/id6748675158"');
+    expect(html).toContain("App Store");
+    expect(html).toContain('href="https://planwithivorie.com/vendor"');
+  });
+});

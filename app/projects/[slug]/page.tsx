@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/badge";
+import { buttonClass } from "@/components/button-styles";
 import { ProjectDemo } from "@/components/demos/project-demo";
 import { Morph } from "@/components/morph";
 import { ProjectCover } from "@/components/project-cover";
@@ -66,6 +67,23 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
         <Badge>{projectTag(project)}</Badge>
         <h1 className="mt-2 text-balance font-serif text-[clamp(2.5rem,6vw,4rem)] leading-[1.02]">{project.title}</h1>
         <p className="mt-4 text-lg text-fg-muted">{project.tagline}</p>
+        {(project.links?.website || project.links?.appStore) && (
+          <div className="mt-6 flex flex-wrap gap-3">
+            {project.links.website && (
+              <a href={project.links.website} className={buttonClass("primary")}>
+                Visit {new URL(project.links.website).hostname.replace(/^www\./, "")} <span aria-hidden="true">↗</span>
+              </a>
+            )}
+            {project.links.appStore && (
+              <a href={project.links.appStore} className={buttonClass("secondary")}>
+                <svg viewBox="0 0 24 24" className="size-4" fill="currentColor" aria-hidden="true">
+                  <path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.87-.76-1.47.02-2.83.86-3.59 2.18-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.41 1.2-2.47-.03-.01-2.27-.87-2.29-3.52ZM14.2 6.12c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.67-.92 2.66.97.08 1.96-.49 2.56-1.21Z" />
+                </svg>
+                Download on the App Store <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </div>
+        )}
       </header>
 
       <div className="mt-8 overflow-hidden rounded-2xl border border-border">
@@ -196,6 +214,15 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
             <div>
               <h3 className="font-mono text-[0.8125rem] uppercase tracking-wider text-fg-meta">Links</h3>
               <ul className="mt-3 space-y-1">
+                {project.links.website && (
+                  <li><a href={project.links.website} className="text-accent hover:underline">Website · {new URL(project.links.website).hostname}</a></li>
+                )}
+                {project.links.appStore && (
+                  <li><a href={project.links.appStore} className="text-accent hover:underline">iOS app · App Store</a></li>
+                )}
+                {project.links.more?.map((l) => (
+                  <li key={l.href}><a href={l.href} className="text-accent hover:underline">{l.label}</a></li>
+                ))}
                 {project.links.repo && (
                   <li><a href={project.links.repo} className="text-accent hover:underline">Source on GitHub</a></li>
                 )}

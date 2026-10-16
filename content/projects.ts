@@ -94,6 +94,11 @@ export const projects: Project[] = [
     role: "Backend owner",
     org: "Pure Billion Technologies",
     stack: ["NestJS", "Socket.IO", "Redis", "PostgreSQL", "Prisma", "Stripe Connect", "Expo React Native", "Next.js", "AWS"],
+    links: {
+      website: "https://planwithivorie.com/",
+      appStore: "https://apps.apple.com/us/app/ivorie/id6748675158",
+      more: [{ label: "Vendor sign-up", href: "https://planwithivorie.com/vendor" }],
+    },
     metrics: [
       { value: "5k+", label: "users" },
       { value: "10k+", label: "messages a day" },
