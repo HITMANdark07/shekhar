@@ -161,6 +161,22 @@ export const projects: Project[] = [
         label: "lower cost per task, same comparison",
         howMeasured: "OpenRouter-billed cost per task: $0.0214 vs. $0.0395.",
       },
+      {
+        value: "100%",
+        label: "GPT-6.1 Sol task success on both servers",
+        howMeasured: "24/24 runs with NeatCode and 24/24 with the filesystem MCP server (95% CI 86–100%).",
+      },
+      {
+        value: "33–42%",
+        label: "of Qwen3.8 Flash runs called a tool that doesn't exist",
+        howMeasured: "8/24 runs with NeatCode, 10/24 with the filesystem server; reported as invalidToolCallRate.",
+      },
+      {
+        value: "$7.10",
+        label: "for the full run, under a $10 cap",
+        howMeasured: "OpenRouter-billed total for all 144 runs; the cap is checked before every model call.",
+      },
+      { value: "12", label: "code-navigation tasks on a pinned repo" },
       { value: "290", label: "tests" },
     ],
     links: { repo: "https://github.com/HITMANdark07/mcp-evals" },
