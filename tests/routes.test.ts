@@ -30,7 +30,8 @@ describe("/projects/[slug]", () => {
   it("renders the full case study: metrics, links, demo and every section", async () => {
     const html = renderToStaticMarkup(await ProjectPage(props("neatcode") as never));
     expect(html).toContain("<h1");
-    expect(html).toContain("12–60×");
+    expect(html).toContain("61%");
+    expect(html).not.toContain("12–60×");
     expect(html).toContain("@neatcodeai/mcp");
     for (const heading of ["TL;DR", "The problem", "How it works", "Key decisions", "Outcomes", "What&#x27;s next"]) {
       expect(html).toContain(heading);

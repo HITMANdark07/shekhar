@@ -18,7 +18,7 @@ export const caseStudies: Record<string, CaseStudy> = {
   neatcode: {
     tldr: [
       "Indexes 131k lines of TypeScript in 3.8s and answers structural queries in under 300ms.",
-      "11 deterministic MCP tools return 12–60× less context than a grep-and-read agent baseline.",
+      "11 deterministic MCP tools. In a published benchmark (mcp-evals), GPT-6.1 Sol used 61% less tool-result context with NeatCode than with a file-reading MCP server, at the same 100% task success.",
       "Open source on npm as @neatcodeai/cli, with 510 tests at a 0.68:1 test-to-code ratio.",
     ],
     context: [
@@ -79,7 +79,8 @@ export const caseStudies: Record<string, CaseStudy> = {
     ],
     outcomes: [
       "131k LOC indexed in 3.8s (~35k LOC/s, single-threaded ts-morph with batched transactions).",
-      "Structural queries answered in under 300ms; 12–60× less context than a grep-and-read baseline for the same query.",
+      "Structural queries answered in under 300ms.",
+      "In the mcp-evals benchmark (144 runs, published with traces), GPT-6.1 Sol solved all 24 runs both with NeatCode and with the filesystem MCP server, using 61% less tool-result context (median 3,235 vs. 8,390 tokens) and 46% lower cost per task with NeatCode. Two smaller flash models scored lower with NeatCode than without it, so the gain depends on the model.",
       `This portfolio indexed in ${siteGraph.stats.indexSeconds}s to power the demo above (${siteGraph.stats.files} linked files shown).`,
       "510 tests at a 0.68:1 test-to-code ratio, full suite green in 12s.",
     ],

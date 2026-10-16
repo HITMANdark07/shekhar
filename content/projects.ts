@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     slug: "neatcode",
     title: "NeatCode",
-    tagline: "A code graph that gives coding agents 12–60× less context than grep-and-read.",
+    tagline: "A code graph that answers coding agents' structural questions over MCP instead of making them read whole files.",
     summary:
       "Open-source engine that indexes TypeScript codebases into a SQLite code graph and serves it to coding agents over MCP.",
     kind: "open-source",
@@ -20,7 +20,12 @@ export const projects: Project[] = [
       { value: "3.8s", label: "to index 131k LOC" },
       { value: "<300ms", label: "structural queries" },
       { value: "0.49s", label: "incremental re-index" },
-      { value: "12–60×", label: "less context than grep-and-read" },
+      {
+        value: "61%",
+        label: "less context than a file-reading MCP server (GPT-6.1 Sol)",
+        howMeasured:
+          "mcp-evals first real run, 2026-10-16: median tool-result tokens per task 3,235 vs. 8,390 on 12 code-navigation tasks, 24/24 success on both servers. Results and traces are public in the mcp-evals repo.",
+      },
       { value: "11", label: "MCP tools" },
       { value: "510", label: "tests" },
     ],
