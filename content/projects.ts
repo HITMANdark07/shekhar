@@ -143,7 +143,26 @@ export const projects: Project[] = [
     period: { start: "2026-10" },
     role: "Author",
     stack: ["TypeScript", "MCP SDK", "zod", "Commander"],
-    metrics: [],
+    metrics: [
+      {
+        value: "144",
+        label: "graded runs in the first real benchmark",
+        howMeasured:
+          "First real run, 2026-10-16: 12 code-navigation tasks × 2 repeats × 2 MCP servers (NeatCode, filesystem) × 3 models (GPT-6.1 Sol, Gemini 3.8 Flash, Qwen3.8 Flash). Results and traces are published in the repo's data/ folder.",
+      },
+      {
+        value: "61%",
+        label: "less context with NeatCode (GPT-6.1 Sol)",
+        howMeasured:
+          "Median tokens returned by tool calls per task, NeatCode vs. the filesystem MCP server: 3,235 vs. 8,390 (o200k_base), both at 24/24 task success.",
+      },
+      {
+        value: "46%",
+        label: "lower cost per task, same comparison",
+        howMeasured: "OpenRouter-billed cost per task: $0.0214 vs. $0.0395.",
+      },
+      { value: "290", label: "tests" },
+    ],
     links: { repo: "https://github.com/HITMANdark07/mcp-evals" },
   },
 ];

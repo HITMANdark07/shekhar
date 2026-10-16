@@ -421,8 +421,8 @@ export const caseStudies: Record<string, CaseStudy> = {
   "mcp-evals": {
     tldr: [
       "An open-source harness that runs the same tasks across models and MCP servers, grades the results, and records every step.",
-      "Designed to measure task success, tool-selection accuracy, context tokens returned per tool call, steps, latency and cost (cost and real-model runs are planned for M2).",
-      "Milestone 1 is merged: the core runner, deterministic graders, an offline mock provider and fake MCP server, and the `run` CLI.",
+      "Measures task success, invalid tool calls, context tokens returned by tool calls, steps, latency and cost, with every model pinned to one provider through OpenRouter.",
+      "Milestones 1 and 2 are merged, and the first real benchmark is published: 144 runs comparing NeatCode with the filesystem MCP server across three models.",
     ],
     context: [
       "MCP servers and agent tools are easy to claim value for and hard to compare: results depend on the model, the prompt, the limits and the task.",
@@ -433,14 +433,14 @@ export const caseStudies: Record<string, CaseStudy> = {
       key: "eval-matrix",
       title: "The eval matrix",
       source: "sample",
-      caption: "Sample data showing the shape of a run: tasks down the side, models across the top. Cells fill as the run replays; select one for its trace summary. Real results will replace this once the first full run lands.",
+      caption: "Sample data showing the shape of a run: tasks down the side, models across the top. Cells fill as the run replays; select one for its trace summary. The first real run's results are summarised under Outcomes and published in the repo.",
     },
     how: [
       { title: "Suites as YAML", detail: "Tasks, graders, servers and models are declared in a suite file, validated with zod, with pinned model IDs and fixture commits." },
       { title: "Fresh server per task", detail: "Every task run starts a fresh MCP server process and a fresh copy of the fixture, so runs can't affect each other." },
       { title: "Own agent loop on the MCP SDK", detail: "A minimal loop sends the prompt, executes tool calls over MCP, and stops at the step, time or budget limit." },
       { title: "Graders and recorder", detail: "Deterministic graders check answers and tool use; a recorder traces every model call, tool call and token count." },
-      { title: "One results contract", detail: "A versioned results.json feeds the CLI today; a GitHub Action regression gate, a public leaderboard and this portfolio's embed are planned to read the same file." },
+      { title: "One results contract", detail: "A versioned results.json feeds the CLI's report, compare and publish commands today; a GitHub Action regression gate, a public leaderboard and this portfolio's embed are planned to read the same file." },
     ],
     decisions: [
       {
@@ -460,11 +460,14 @@ export const caseStudies: Record<string, CaseStudy> = {
       },
     ],
     outcomes: [
-      "Milestone 1 merged: runner, mock provider, fake MCP server, deterministic graders, and `run` printing a results table.",
-      "Public repository: github.com/HITMANdark07/mcp-evals.",
+      "Milestones 1 and 2 merged: runner, deterministic graders, an OpenRouter provider with token and cost accounting and a per-call budget cap, resumable runs, and `report`, `compare` and `publish` commands; 290 tests.",
+      "First real run (2026-10-16): 12 code-navigation tasks on the Hono repo, NeatCode vs. the filesystem MCP server, GPT-6.1 Sol, Gemini 3.8 Flash and Qwen3.8 Flash, 2 repeats: 144 runs, $7.10 against a $10 cap.",
+      "GPT-6.1 Sol solved all 24 runs on both servers. With NeatCode it pulled 61% fewer tool-result tokens into context (median 3,235 vs. 8,390) and cost 46% less per task, though it took more steps (6.0 vs. 4.4).",
+      "Both flash models scored lower with NeatCode than with the filesystem server (Gemini 3.8 Flash 0% vs. 25%, Qwen3.8 Flash 8% vs. 25%). The published traces show how they failed; the methodology notes that the harness author also wrote NeatCode.",
+      "Results, traces and methodology are public: github.com/HITMANdark07/mcp-evals.",
     ],
     next: [
-      "M2: real runs through OpenRouter with token and cost accounting, repeats with confidence intervals, `compare`, and the first NeatCode vs. filesystem run.",
+      "Harder tasks (GPT-6.1 Sol passed every one) and the general-tools suite.",
       "M3: a GitHub Action with PR comments and a CI gate for NeatCode.",
       "M4–M5: a public leaderboard and the live embed on this page.",
     ],
