@@ -66,12 +66,13 @@ describe("registry helpers", () => {
       "fleet",
       "genai-platform",
       "ivorie",
+      "ai-apps-platform",
     ]);
   });
 
   it("sorts all projects by order", () => {
     expect(getProjects()[0].slug).toBe("neatcode");
-    expect(getProjects()).toHaveLength(6);
+    expect(getProjects()).toHaveLength(7);
   });
 
   it("keeps building projects out of selected work and lists them separately", () => {
@@ -158,6 +159,7 @@ describe("résumé alignment (final review)", () => {
     "genai-platform": ["LangChain", "MCP", "Vector databases", "RAG"],
     ivorie: ["NestJS", "Expo React Native", "Next.js", "Stripe Connect", "AWS", "Socket.IO", "Redis", "PostgreSQL", "Prisma"],
     "mcp-evals": ["TypeScript", "MCP SDK", "zod", "Commander"],
+    "ai-apps-platform": ["Go", "Gin", "GORM", "PostgreSQL", "pgvector", "Redis", "TypeScript", "LangGraph", "OpenTelemetry", "GitHub Actions"],
   };
 
   it("uses only résumé-backed technologies in project stacks", () => {

@@ -71,7 +71,7 @@ export default function HomePage() {
         title="Selected work"
         action={<Link href="/projects" className="text-sm text-accent hover:underline">All projects →</Link>}
       >
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 md:[&>*:last-child:nth-child(odd)]:col-span-2">
           {work.map((p) => (
             <ProjectCard key={p.slug} project={p} />
           ))}

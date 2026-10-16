@@ -37,7 +37,15 @@ describe("flow demos", () => {
   });
 
   it("covers the generative AI request, both Ivorie views and the story pipeline", () => {
-    expect(flows.map((f) => f.id).sort()).toEqual(["genai-request", "ivorie-message", "ivorie-payment", "story-pipeline"]);
+    expect(flows.map((f) => f.id).sort()).toEqual([
+      "genai-request",
+      "ivorie-message",
+      "ivorie-payment",
+      "story-pipeline",
+      "tenant-januji",
+      "tenant-missing",
+      "tenant-notifypay",
+    ]);
   });
 
   it("traces the live story pipeline from microphone to panels", () => {

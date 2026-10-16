@@ -14,7 +14,14 @@ export interface FlowStep {
 }
 
 export interface Flow {
-  id: "genai-request" | "ivorie-message" | "ivorie-payment" | "story-pipeline";
+  id:
+    | "genai-request"
+    | "ivorie-message"
+    | "ivorie-payment"
+    | "story-pipeline"
+    | "tenant-januji"
+    | "tenant-notifypay"
+    | "tenant-missing";
   label: string;
   nodes: FlowNode[];
   steps: FlowStep[];
@@ -125,6 +132,60 @@ export const flows: Flow[] = [
       { at: "dispatch", title: "Fan out the work", detail: "New characters get a portrait on the text-to-image queue; the scene becomes one candidate per image-to-image pod, each with its own seed and the characters' reference images.", trace: '{ "t2i": 2, "i2i_batch": { "candidates": 3, "refs": 2 } }' },
       { at: "gpus", title: "GPUs render in parallel", detail: "Each Celery worker drives one ComfyUI pod, one job at a time. Candidates render side by side, so a scene takes about one job's time.", trace: '{ "pod1": "45%", "pod2": "52%", "pod3": "38%" }' },
       { at: "panels", title: "Panels appear live", detail: "Workers publish progress on Redis pub/sub; the browser watches every candidate fill in and the story's panels appear as it is told." },
+    ],
+  },
+  {
+    id: "tenant-januji",
+    label: "Januji · AI chat",
+    nodes: [
+      { id: "app", label: "Januji app", sub: "Expo · Next.js" },
+      { id: "appid", label: "App ID", sub: "X-App-ID · cached" },
+      { id: "auth", label: "Auth", sub: "JWT + session" },
+      { id: "limits", label: "Guards", sub: "rate limit · plan" },
+      { id: "handler", label: "AI routes", sub: "Go · ai-common" },
+      { id: "ai", label: "AI service", sub: "TypeScript · LangGraph" },
+    ],
+    steps: [
+      { at: "app", title: "A Januji user sends a chat message", detail: "The app calls the shared backend with its own tenant ID in the X-App-ID header.", trace: "POST /api/v1/... chat   X-App-ID: <januji app uuid>" },
+      { at: "appid", title: "Identify the tenant", detail: "Middleware validates the app ID against the apps table (cached in Redis) and stores it in the request context for everything downstream." },
+      { at: "auth", title: "Authenticate the user", detail: "JWT and session checks run inside the tenant: a Januji token means nothing to NotifyPay." },
+      { at: "limits", title: "Rate limit and plan", detail: "A Redis-backed rate limiter (with an in-memory fallback) and the cached subscription state decide whether this plan can use the feature." },
+      { at: "handler", title: "Shared AI routes", detail: "The Go AI routes load the tenant's characters and conversation, every query filtered by app_id." },
+      { at: "ai", title: "LLM call, streamed back", detail: "The TypeScript service picks the provider (OpenAI, Gemini or xAI), adds memory and RAG context from pgvector, charges tokens or coins, and streams the reply over SSE.", trace: "event: token   data: {\"delta\": \"Hey! Glad you're back…\"}" },
+    ],
+  },
+  {
+    id: "tenant-notifypay",
+    label: "NotifyPay · payments",
+    nodes: [
+      { id: "app", label: "NotifyPay app", sub: "Android · Compose" },
+      { id: "appid", label: "App ID", sub: "X-App-ID · cached" },
+      { id: "auth", label: "Auth", sub: "JWT + session" },
+      { id: "limits", label: "Guards", sub: "rate limit · plan" },
+      { id: "handler", label: "NotifyPay routes", sub: "Go · app module" },
+      { id: "db", label: "PostgreSQL", sub: "scoped by app_id" },
+    ],
+    steps: [
+      { at: "app", title: "A NotifyPay user opens their list", detail: "The Android app calls the same backend with NotifyPay's app ID.", trace: "GET /api/v1/...   X-App-ID: <notifypay app uuid>" },
+      { at: "appid", title: "Identify the tenant", detail: "Same middleware, different tenant: the request context now carries NotifyPay's app ID." },
+      { at: "auth", title: "Authenticate the user", detail: "Users are tenant-scoped, so the token is checked against NotifyPay's users only." },
+      { at: "limits", title: "Rate limit and plan", detail: "The same shared guards run for every app, configured per app in YAML." },
+      { at: "handler", title: "App-specific module", detail: "NotifyPay's own routes, handlers and repositories sit on top of the shared common modules." },
+      { at: "db", title: "Only this tenant's rows", detail: "Every table carries an indexed app_id, so the query can only ever see NotifyPay's data.", trace: "SELECT … FROM notifications WHERE app_id = '<notifypay>' AND user_id = $1 AND deleted_at IS NULL" },
+    ],
+  },
+  {
+    id: "tenant-missing",
+    label: "No X-App-ID",
+    nodes: [
+      { id: "app", label: "Unknown client", sub: "no tenant header" },
+      { id: "appid", label: "App ID", sub: "X-App-ID · cached" },
+      { id: "auth", label: "Auth", sub: "never reached" },
+    ],
+    steps: [
+      { at: "app", title: "A request arrives without a tenant", detail: "No X-App-ID or App-ID header is sent." },
+      { at: "appid", title: "Look for the tenant", detail: "The app-ID middleware checks both header names before anything else in the chain runs." },
+      { at: "appid", title: "Rejected at the door", detail: "The app-ID middleware rejected it before auth or any query ran, so tenant data is never touched. Only global admin routes are exempt from the header.", trace: '{ "code": "MISSING_APP_ID", "message": "App ID is required in header (X-App-ID or App-ID)" }' },
     ],
   },
 ];

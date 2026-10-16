@@ -5,6 +5,7 @@ import { FleetEpisodeDemo } from "./fleet-episode-demo";
 import { FlowDemo } from "./flow-demo";
 import { GpuQueueDemo } from "./gpu-queue-demo";
 import { NeatCodeGraph } from "./neatcode-graph";
+import { TenantPlatformDemo } from "./tenant-platform-demo";
 
 const DEMOS: Record<DemoKey, () => React.ReactNode> = {
   "neatcode-graph": () => <NeatCodeGraph variant="full" />,
@@ -13,6 +14,7 @@ const DEMOS: Record<DemoKey, () => React.ReactNode> = {
   "genai-flow": () => <FlowDemo ids={["genai-request"]} />,
   "ivorie-flows": () => <FlowDemo ids={["ivorie-message", "ivorie-payment"]} />,
   "eval-matrix": () => <EvalMatrixDemo />,
+  "tenant-platform": () => <TenantPlatformDemo />,
 };
 
 export function ProjectDemo({ demo }: { demo: CaseStudy["demo"] }) {

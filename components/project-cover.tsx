@@ -115,6 +115,24 @@ function DefaultMotif() {
   );
 }
 
+function TenantsMotif() {
+  return (
+    <>
+      {[0, 1, 2].map((i) => (
+        <g key={i}>
+          <rect x={190 + i * 62} y={16} width={44} height={30} rx={4} fill="var(--bg)" stroke={INK} strokeWidth={1.1} />
+          <line x1={212 + i * 62} y1={46} x2={212 + i * 62} y2={58} stroke={INK} strokeWidth={1} />
+        </g>
+      ))}
+      <line x1={180} y1={58} x2={370} y2={58} stroke={INK} strokeWidth={1.3} />
+      <rect x={222} y={70} width={52} height={28} rx={5} fill="var(--bg)" stroke={INK} strokeWidth={1.2} />
+      <rect x={290} y={70} width={52} height={28} rx={5} fill={ACCENT} />
+      <line x1={248} y1={58} x2={248} y2={70} stroke={INK} strokeWidth={1} />
+      <line x1={316} y1={58} x2={316} y2={70} stroke={INK} strokeWidth={1} />
+    </>
+  );
+}
+
 const MOTIFS: Record<string, () => React.ReactNode> = {
   neatcode: GraphMotif,
   "gpu-inference": LanesMotif,
@@ -122,6 +140,7 @@ const MOTIFS: Record<string, () => React.ReactNode> = {
   "genai-platform": BranchesMotif,
   ivorie: ArcsMotif,
   "mcp-evals": MatrixMotif,
+  "ai-apps-platform": TenantsMotif,
 };
 
 export function ProjectCover({

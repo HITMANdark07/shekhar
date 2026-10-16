@@ -1,7 +1,7 @@
 import type { DemoSource } from "@/components/demos/demo-frame";
 import siteGraph from "./generated/site-graph.json";
 
-export type DemoKey = "neatcode-graph" | "gpu-queue" | "fleet-episode" | "genai-flow" | "ivorie-flows" | "eval-matrix";
+export type DemoKey = "neatcode-graph" | "gpu-queue" | "fleet-episode" | "genai-flow" | "ivorie-flows" | "eval-matrix" | "tenant-platform";
 
 export interface CaseStudy {
   tldr: string[];
@@ -333,6 +333,88 @@ export const caseStudies: Record<string, CaseStudy> = {
       "10k+ messages a day through real-time chat and notifications.",
       "Three apps (mobile, admin, vendor portal) shipping from one typed monorepo.",
       "Live: the iOS app is on the App Store, with the web experience and vendor sign-up at planwithivorie.com.",
+    ],
+  },
+
+  "ai-apps-platform": {
+    tldr: [
+      "One backend platform for several consumer apps: a Go API and a TypeScript AI service shared by every app, with each tenant's data isolated by app ID.",
+      "AI as a shared service: multi-provider LLM chat (OpenAI, Gemini, xAI) with RAG over pgvector, conversation memory, SSE streaming, and token and coin billing.",
+      "Shipped with blue-green CI/CD on GitHub Actions: build, verify, health-check the idle slot, flip nginx, and roll back automatically on failure.",
+    ],
+    context: [
+      "Every new consumer app, whether an AI character chat app or an Android payments app, needs the same plumbing: users and auth, subscriptions and plans, rate limits, notifications, AI billing, observability and a safe way to deploy. Rebuilding it per app is slow and multiplies the places things break.",
+      "This platform builds it once. Apps plug in as tenants: they share the common modules and the AI service, add their own routes on top, and can never see each other's data.",
+    ],
+    role: "Lead developer (about 80% of 289 commits): the multi-tenant Go platform, the TypeScript AI service, and the CI/CD pipeline and server setup.",
+    demo: {
+      key: "tenant-platform",
+      title: "Follow a tenant request · ship it",
+      source: "illustrative",
+      caption:
+        "Two views of the real system. Follow a request from Januji or NotifyPay through the shared middleware into its own tenant's data (or watch one without X-App-ID get rejected), then step through the production blue-green deploy, including what happens when a health check fails.",
+    },
+    how: [
+      {
+        title: "Tenant from the first byte",
+        detail: "Every request carries X-App-ID. Middleware validates it against the apps table (cached in Redis), stores it in the request context, and rejects requests without one; only global admin routes are exempt.",
+      },
+      {
+        title: "Isolation in the schema",
+        detail: "Every table has an indexed app_id (except the root apps table and global admins), UUID keys and soft deletes, and every query filters by app_id. PostgreSQL through GORM, with SQL migrations.",
+      },
+      {
+        title: "Shared modules, app-specific routes",
+        detail: "Users, auth, subscriptions and notifications live once in common modules; each app (Januji, NotifyPay) adds its own routes, handlers and YAML config on top. A new app is a new tenant, not a new backend.",
+      },
+      {
+        title: "A middleware chain every app gets",
+        detail: "Gin middleware for request IDs, OpenTelemetry tracing, logging tagged with the app ID, timeouts, panic recovery, JWT auth with sessions, Redis-backed distributed rate limiting with an in-memory fallback, and plan checks against cached subscription state.",
+      },
+      {
+        title: "An AI service in TypeScript",
+        detail: "Express with LangChain.js and LangGraph orchestrates OpenAI, Gemini and xAI models: RAG over documents stored in pgvector, memory extracted from conversations, replies streamed over SSE, and token quotas and coins enforced with Redis caching.",
+      },
+      {
+        title: "Observable, and shuts down cleanly",
+        detail: "OpenTelemetry traces, metrics and logs go to SigNoz, and every component stops in an ordered graceful shutdown.",
+      },
+      {
+        title: "Blue-green CI/CD",
+        detail: "GitHub Actions builds a static arm64 Go binary and the TypeScript service, uploads both into the idle slot with configs and migrations (verifying each upload), starts it, health-checks it, flips the current symlink and the nginx upstream, and rolls back automatically if anything fails. Dev deploys on every push to the dev branch; production deploys on demand.",
+      },
+    ],
+    decisions: [
+      {
+        decision: "One shared schema with app_id on every row",
+        alternative: "A database or schema per tenant",
+        why: "One migration path and one connection pool serve every app, with isolation enforced at the door by middleware and in every query.",
+      },
+      {
+        decision: "Go for the platform, TypeScript for AI",
+        alternative: "One language for everything",
+        why: "Each side uses the ecosystem it needs: a fast, typed Go core for the API, and TypeScript for LangChain.js, LangGraph and the provider SDKs.",
+      },
+      {
+        decision: "Blue-green deploys behind a health-gated switch",
+        alternative: "Restarting the service in place",
+        why: "The new version runs and proves itself on the idle slot before nginx sends it a single request, and the previous slot stays on disk for an instant rollback.",
+      },
+      {
+        decision: "Distributed rate limiting with an in-memory fallback",
+        alternative: "Per-process limits only",
+        why: "Limits hold across instances through Redis, and the API keeps protecting itself if Redis is unavailable.",
+      },
+      {
+        decision: "A static arm64 binary built in CI",
+        alternative: "Building on the server",
+        why: "CI produces one self-contained, stripped binary that runs on the arm64 VM with no toolchain installed there.",
+      },
+    ],
+    outcomes: [
+      "Two apps on one backend: Januji (an Expo + Next.js AI chat app) and NotifyPay (an Android app).",
+      "Multi-provider AI with RAG, memory, streaming and billing, shared by every tenant.",
+      "Blue-green deploys for both services: dev on every push, production on demand, with automatic rollback.",
     ],
   },
 
