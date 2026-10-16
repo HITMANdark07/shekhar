@@ -64,6 +64,10 @@ describe("static export", () => {
     expect(read(f)).toMatch(/<meta property="og:image" content="https:\/\/www\.shekharkumar\.com\//);
   });
 
+  it("carries the Bing site-verification meta tag on the home page", () => {
+    expect(read("index.html")).toContain('<meta name="msvalidate.01" content="0104C9DECD1BAF389D70A58EC2B2A7A1"/>');
+  });
+
   it("marks profile links rel=me", () => {
     expect(read("index.html")).toMatch(/href="https:\/\/github.com\/HITMANdark07"[^>]*rel="me"|rel="me"[^>]*href="https:\/\/github.com\/HITMANdark07"/);
   });

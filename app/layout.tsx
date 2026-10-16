@@ -29,6 +29,10 @@ export const metadata: Metadata = {
   description: site.description,
   openGraph: { type: "website", siteName: site.name },
   twitter: { card: "summary_large_image" },
+  verification: {
+    // Bing Webmaster Tools (Google Search Console is verified by DNS TXT record).
+    other: { "msvalidate.01": "0104C9DECD1BAF389D70A58EC2B2A7A1" },
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
