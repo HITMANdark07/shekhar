@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   title: "Projects",
   description: "Open-source and professional projects across backend and AI infrastructure.",
   alternates: { canonical: "/projects" },
+  openGraph: {
+    title: "Projects — Shekhar Kumar",
+    description: "Open-source and professional projects across backend and AI infrastructure, each with an interactive demo.",
+    url: "/projects",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Shekhar Kumar — Senior Software Engineer" }],
+  },
 };
 
 export default function ProjectsPage() {

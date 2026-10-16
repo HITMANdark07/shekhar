@@ -12,8 +12,12 @@ import { SystemMap } from "@/components/system-map";
 import { employers } from "@/content/experience";
 import { site } from "@/content/site";
 import { getBuilding, getFeatured, getSelectedWork } from "@/lib/projects";
+import { homeJsonLd, JsonLd } from "@/lib/json-ld";
 
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { title: `${site.name} — ${site.role}, Backend & AI Infrastructure`, description: site.description, url: "/" },
+};
 
 export default function HomePage() {
   const featured = getFeatured();
@@ -22,11 +26,12 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd json={homeJsonLd()} />
       <section aria-labelledby="intro-title">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
           <div>
             <p className="font-mono text-[0.8125rem] uppercase tracking-wider text-accent">
-              {site.role} · {site.focus} · {site.location.city}
+              {site.name} · {site.role} · {site.focus} · {site.location.city}
             </p>
             <h1 id="intro-title" className="mt-4 max-w-3xl text-balance font-serif text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.04]">
               {site.headline}

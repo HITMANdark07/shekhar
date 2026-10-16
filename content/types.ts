@@ -49,6 +49,8 @@ export interface Project {
   diagram?: { src: string; alt: string };
   /** Part 3: key into the demo-component registry. */
   demo?: string;
+  /** Last meaningful content update, 'YYYY-MM-DD' (sitemap lastmod, Article dateModified, visible "Updated"). */
+  updated?: string;
 }
 
 export interface Role {
@@ -97,4 +99,11 @@ export interface Site {
   resume: string;
   links: { github: string; linkedin: string };
   portrait: { src: string; alt: string; width: number; height: number };
+  /** Last site-wide content update, 'YYYY-MM-DD'. */
+  updated: string;
+  /** Unique handles that disambiguate a common name (schema.org alternateName). */
+  handles: string[];
+  /** Topics for schema.org knowsAbout. */
+  knowsAbout: string[];
+  education: { school: string };
 }

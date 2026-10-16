@@ -10,7 +10,7 @@ export const site: Site = {
   subheadline:
     "4+ years shipping production systems in TypeScript, Go and PostgreSQL. Recently: NeatCode, GPU inference across pods, and Fleet for agent evaluation.",
   description:
-    "Senior software engineer building backend and AI infrastructure: NeatCode, GPU inference pipelines, agent evaluation, and marketplace backends.",
+    "Shekhar Kumar is a senior software engineer in Bengaluru building backend and AI infrastructure, and an independent builder of open-source tools like NeatCode.",
   bio: [
     "I'm Shekhar, a senior software engineer at Pure Billion Technologies. I've owned backends end to end, including a wedding marketplace with real-time chat at 10k+ messages a day, Stripe Connect payment flows, and an automated multi-tenant migration system.",
     "More and more of my work is the infrastructure under AI products: model routing, tool calling, retrieval, GPU inference and agent evaluation.",
@@ -35,4 +35,19 @@ export const site: Site = {
     width: 640,
     height: 960,
   },
+  updated: "2026-10-16",
+  handles: ["HITMANdark07"],
+  knowsAbout: [
+    "Backend engineering",
+    "AI infrastructure",
+    "Distributed systems",
+    "Model Context Protocol (MCP)",
+    "LLM evaluation",
+    "GPU inference",
+    "TypeScript",
+    "Go",
+    "Python",
+    "PostgreSQL",
+  ],
+  education: { school: "Techno Main Salt Lake" },
 };

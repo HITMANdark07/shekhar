@@ -10,10 +10,10 @@ export function SiteFooter() {
             <a href={`mailto:${site.email}`} className="hover:text-fg">{site.email}</a>
           </li>
           <li>
-            <a href={site.links.github} className="hover:text-fg">GitHub</a>
+            <a href={site.links.github} rel="me" className="hover:text-fg">GitHub</a>
           </li>
           <li>
-            <a href={site.links.linkedin} className="hover:text-fg">LinkedIn</a>
+            <a href={site.links.linkedin} rel="me" className="hover:text-fg">LinkedIn</a>
           </li>
         </ul>
         <p className="font-mono text-[0.8125rem] text-fg-meta">

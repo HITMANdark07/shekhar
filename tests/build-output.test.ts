@@ -46,8 +46,26 @@ describe("static export", () => {
     expect(read("sitemap.xml")).not.toContain("/terminal");
   });
 
-  it("ships the JSON-LD person on the home page", () => {
+  it("ships page-appropriate structured data, and none on utility pages", () => {
+    expect(read("index.html")).toContain('"@type":"WebSite"');
     expect(read("index.html")).toContain('"@type":"Person"');
+    expect(read("about.html")).toContain('"@type":"ProfilePage"');
+    expect(read("projects/neatcode.html")).toContain('"@type":"BreadcrumbList"');
+    expect(read("terminal.html")).not.toContain("application/ld+json");
+  });
+
+  it("serves llms.txt, a favicon.ico and a raster icon", () => {
+    expect(read("llms.txt")).toContain("NeatCode");
+    expect(existsSync(join(OUT, "favicon.ico"))).toBe(true);
+    expect(existsSync(join(OUT, "icon.png"))).toBe(true);
+  });
+
+  it.each(["index.html", "about.html", "projects.html", "projects/fleet.html"])("%s has a social preview image", (f) => {
+    expect(read(f)).toMatch(/<meta property="og:image" content="https:\/\/www\.shekharkumar\.com\//);
+  });
+
+  it("marks profile links rel=me", () => {
+    expect(read("index.html")).toMatch(/href="https:\/\/github.com\/HITMANdark07"[^>]*rel="me"|rel="me"[^>]*href="https:\/\/github.com\/HITMANdark07"/);
   });
 
   it("has no placeholder copy on any page", () => {

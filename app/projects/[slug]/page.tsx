@@ -8,6 +8,7 @@ import { Morph } from "@/components/morph";
 import { ProjectCover } from "@/components/project-cover";
 import { MetricList } from "@/components/metric-list";
 import { caseStudies } from "@/content/case-studies";
+import { JsonLd, projectJsonLd } from "@/lib/json-ld";
 import { formatPeriod, getProject, getProjects, projectTag } from "@/lib/projects";
 
 export const dynamicParams = false;
@@ -53,9 +54,13 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
     ...(project.org ? ([["Organisation", project.org]] as [string, string][]) : []),
     ...(period ? ([["Period", period]] as [string, string][]) : []),
   ];
+  const updated = project.updated
+    ? new Date(`${project.updated}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
+    : null;
 
   return (
     <article>
+      <JsonLd json={projectJsonLd(project)} />
       <div className="reading-progress" aria-hidden="true" />
       <p className="text-sm">
         <Link href="/projects" className="text-fg-muted hover:text-fg">
@@ -92,13 +97,21 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
         </Morph>
       </div>
 
-      <dl className="mt-8 grid max-w-3xl gap-4 border-y border-border py-5 sm:grid-cols-3">
+      <dl className="mt-8 grid max-w-3xl gap-4 border-y border-border py-5 sm:grid-cols-4">
         {facts.map(([label, value]) => (
           <div key={label}>
             <dt className="text-[0.8125rem] text-fg-meta">{label}</dt>
             <dd>{value}</dd>
           </div>
         ))}
+        {updated && (
+          <div>
+            <dt className="text-[0.8125rem] text-fg-meta">Updated</dt>
+            <dd>
+              <time dateTime={project.updated}>{updated}</time>
+            </dd>
+          </div>
+        )}
       </dl>
 
       <section aria-labelledby="tldr" className="mt-10 max-w-3xl">
