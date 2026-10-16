@@ -132,7 +132,7 @@ export function ProjectCover({ project, className = "" }: { project: Project; cl
         alt=""
         width={1200}
         height={630}
-        className={`w-full object-cover ${className}`}
+        className={`cover-art w-full object-cover ${className}`}
       />
     );
   }

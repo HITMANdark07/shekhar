@@ -147,3 +147,13 @@
     }
   }
 }
+
+/* Generated cover art is ink on paper; in dark mode, invert it and rotate hue back so cobalt stays blue. */
+:root[data-theme="dark"] .cover-art {
+  filter: invert(0.9) hue-rotate(180deg);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cover-art {
+    filter: invert(0.9) hue-rotate(180deg);
+  }
+}

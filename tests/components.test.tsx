@@ -86,9 +86,16 @@ describe("ExperienceList", () => {
 });
 
 describe("ProjectCover", () => {
-  it("draws a decorative motif for every project", () => {
+  it("ships generated cover art for every project, rendered as decoration", () => {
     for (const p of projects) {
-      const html = renderToStaticMarkup(<ProjectCover project={p} />);
+      expect(p.cover?.src).toBe(`/projects/${p.slug}/cover.webp`);
+      expect(renderToStaticMarkup(<ProjectCover project={p} />)).toMatch(/<img[^>]*alt=""/);
+    }
+  });
+
+  it("draws a code motif when a project has no cover art", () => {
+    for (const p of projects) {
+      const html = renderToStaticMarkup(<ProjectCover project={{ ...p, cover: undefined }} />);
       expect(html).toContain(`data-motif="${p.slug}"`);
       expect(html).toContain('aria-hidden="true"');
     }

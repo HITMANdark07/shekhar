@@ -48,3 +48,6 @@ next-env.d.ts
 
 # playwright MCP artifacts
 .playwright-mcp/
+
+# raw generated art (optimized copies live in public/ and assets/og/)
+/assets/raw/

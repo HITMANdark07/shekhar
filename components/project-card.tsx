@@ -14,7 +14,7 @@ export function ProjectCard({
 }) {
   return (
     <article className="relative flex flex-col overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-150 hover:border-accent">
-      <ProjectCover project={project} className="h-28" />
+      <ProjectCover project={project} className="h-36" />
       <div className="flex flex-1 flex-col p-5">
         <Badge>{projectTag(project)}</Badge>
         <Heading className="mt-1 font-serif text-2xl">

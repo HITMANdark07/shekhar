@@ -5,7 +5,7 @@ import { ImageResponse } from "next/og";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
-const BACKGROUND = join(process.cwd(), "assets/og/background.png");
+const BACKGROUND = join(process.cwd(), "assets/og/background.jpg");
 
 export async function renderOgImage({
   eyebrow,
@@ -18,7 +18,7 @@ export async function renderOgImage({
 }) {
   const serif = await readFile(join(process.cwd(), "assets/fonts/InstrumentSerif-Regular.ttf"));
   const background = existsSync(BACKGROUND)
-    ? `data:image/png;base64,${(await readFile(BACKGROUND)).toString("base64")}`
+    ? `data:image/jpeg;base64,${(await readFile(BACKGROUND)).toString("base64")}`
     : null;
 
   return new ImageResponse(
