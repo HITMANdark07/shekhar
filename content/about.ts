@@ -34,7 +34,7 @@ export const currently = {
     },
     {
       label: "Shipping NeatCode",
-      detail: "v0.1.4 is on npm as @neatcodeai/cli, with installer and version fixes.",
+      detail: "v0.1.5 is on npm as @neatcodeai/cli: arrow-function and interface indexing, a get_source tool and lookup suggestions, all found through the mcp-evals benchmark.",
       href: "/projects/neatcode",
     },
     {

@@ -26,7 +26,7 @@ export const projects: Project[] = [
         howMeasured:
           "mcp-evals first real run, 2026-10-16: median tool-result tokens per task 3,235 vs. 8,390 on 12 code-navigation tasks, 24/24 success on both servers. Results and traces are public in the mcp-evals repo.",
       },
-      { value: "11", label: "MCP tools" },
+      { value: "12", label: "MCP tools" },
       { value: "527", label: "tests" },
     ],
     links: {

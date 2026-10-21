@@ -18,14 +18,14 @@ export const caseStudies: Record<string, CaseStudy> = {
   neatcode: {
     tldr: [
       "Indexes 131k lines of TypeScript in 3.8s and answers structural queries in under 300ms.",
-      "11 deterministic MCP tools. In a published benchmark (mcp-evals), GPT-6.1 Sol used 61% less tool-result context with NeatCode than with a file-reading MCP server, at the same 100% task success.",
+      "12 deterministic MCP tools. In a published benchmark (mcp-evals), GPT-6.1 Sol used 61% less tool-result context with NeatCode than with a file-reading MCP server, at the same 100% task success.",
       "Open source on npm as @neatcodeai/cli, with 527 tests.",
     ],
     context: [
       "Coding agents spend most of their context window rediscovering the codebase. Every turn they grep, open files, and read far more than they need, and they still miss the structural answer: who calls this, what renders that, where the event gets published.",
       "They also ignore the conventions a repo already follows, because nothing tells them what those conventions are until a reviewer complains.",
     ],
-    role: "Author and maintainer: architecture, the parser and graph engine, the MCP server, the CLI, tests and npm releases (v0.1.4 published October 2026).",
+    role: "Author and maintainer: architecture, the parser and graph engine, the MCP server, the CLI, tests and npm releases (v0.1.5 published October 2026).",
     demo: {
       key: "neatcode-graph",
       title: "This website, indexed by NeatCode",
@@ -52,7 +52,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       },
       {
         title: "Serve it to agents over MCP",
-        detail: "A stdio MCP server exposes 11 tools (query_graph, find_node, trace_flow, validate_diff and more), and `neatcode claude install` wires it into Claude Code in one command.",
+        detail: "A stdio MCP server exposes 12 tools (query_graph, find_node, trace_flow, get_source, validate_diff and more), and `neatcode claude install` wires it into Claude Code in one command.",
       },
     ],
     decisions: [
