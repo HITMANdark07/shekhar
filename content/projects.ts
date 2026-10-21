@@ -27,7 +27,7 @@ export const projects: Project[] = [
           "mcp-evals first real run, 2026-10-16: median tool-result tokens per task 3,235 vs. 8,390 on 12 code-navigation tasks, 24/24 success on both servers. Results and traces are public in the mcp-evals repo.",
       },
       { value: "11", label: "MCP tools" },
-      { value: "510", label: "tests" },
+      { value: "516", label: "tests" },
     ],
     links: {
       repo: "https://github.com/HITMANdark07/neatcodeai",

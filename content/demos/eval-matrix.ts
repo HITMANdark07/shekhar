@@ -35,7 +35,7 @@ const SERVER_LABEL: Record<string, [string, string]> = {
 const MODEL_LABEL: Record<string, [string, string]> = {
   "openai/gpt-6.1-sol": ["GPT-6.1 Sol", "GPT"],
   "google/gemini-3.8-flash": ["Gemini 3.8 Flash", "Gem"],
-  "qwen/qwen3.8-flash": ["Qwen 3.8 Flash", "Qwen"],
+  "qwen/qwen3.8-flash": ["Qwen3.8 Flash", "Qwen"],
 };
 
 const columns: Column[] = data.servers.flatMap((server) =>

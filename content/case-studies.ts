@@ -19,7 +19,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     tldr: [
       "Indexes 131k lines of TypeScript in 3.8s and answers structural queries in under 300ms.",
       "11 deterministic MCP tools. In a published benchmark (mcp-evals), GPT-6.1 Sol used 61% less tool-result context with NeatCode than with a file-reading MCP server, at the same 100% task success.",
-      "Open source on npm as @neatcodeai/cli, with 510 tests at a 0.68:1 test-to-code ratio.",
+      "Open source on npm as @neatcodeai/cli, with 516 tests.",
     ],
     context: [
       "Coding agents spend most of their context window rediscovering the codebase. Every turn they grep, open files, and read far more than they need, and they still miss the structural answer: who calls this, what renders that, where the event gets published.",
@@ -81,8 +81,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       "131k LOC indexed in 3.8s (~35k LOC/s, single-threaded ts-morph with batched transactions).",
       "Structural queries answered in under 300ms.",
       "In the mcp-evals benchmark (144 runs, published with traces), GPT-6.1 Sol solved all 24 runs both with NeatCode and with the filesystem MCP server, using 61% less tool-result context (median 3,235 vs. 8,390 tokens) and 46% lower cost per task with NeatCode. Two smaller flash models scored lower with NeatCode than without it, so the gain depends on the model.",
+      "Those flash-model traces exposed an indexer gap: functions written as `export const f = (...) => ...` were not indexed unless they returned JSX, so lookups like `compose` came back empty. Fixed in v0.1.5, which takes Hono from 82 to 592 indexed functions; a re-run with the fix is next.",
       `This portfolio indexed in ${siteGraph.stats.indexSeconds}s to power the demo above (${siteGraph.stats.files} linked files shown).`,
-      "510 tests at a 0.68:1 test-to-code ratio, full suite green in 12s.",
+      "516 tests, all green.",
     ],
     next: [
       "v0.2: Cursor and Codex installers, import-forbidden and edge-forbidden rule mining, agent-proposed rules.",
@@ -465,9 +466,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       "First real run (2026-10-16): 12 code-navigation tasks on the Hono repo, NeatCode vs. the filesystem MCP server, GPT-6.1 Sol, Gemini 3.8 Flash and Qwen3.8 Flash, 2 repeats: 144 runs, $7.10 against a $10 cap.",
       "GPT-6.1 Sol solved all 24 runs on both servers. With NeatCode it pulled 61% fewer tool-result tokens into context (median 3,235 vs. 8,390) and cost 46% less per task, though it took more steps (6.0 vs. 4.4).",
       "Both flash models scored lower with NeatCode than with the filesystem server (Gemini 3.8 Flash 0% vs. 25%, Qwen3.8 Flash 8% vs. 25%). The published traces show how they failed; the methodology notes that the harness author also wrote NeatCode.",
+      "Replaying those failing tool calls found a NeatCode bug: arrow-function constants such as Hono's `compose` and `every` were never indexed. NeatCode v0.1.5 fixes it (82 → 592 function nodes on the same repo); the numbers above are for v0.1.4 until the run is repeated.",
       "Results, traces and methodology are public: github.com/HITMANdark07/mcp-evals.",
     ],
     next: [
+      "Re-run the flash models with NeatCode v0.1.5.",
       "Harder tasks (GPT-6.1 Sol passed every one) and the general-tools suite.",
       "M3: a GitHub Action with PR comments and a CI gate for NeatCode.",
       "M4–M5: a public leaderboard and the live embed on this page.",
