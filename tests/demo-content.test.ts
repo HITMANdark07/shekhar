@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { cumulativeRewards, fleetEpisode } from "@/content/demos/fleet-episode";
 import { flows } from "@/content/demos/flows";
 import { evalRun, replayOrder } from "@/content/demos/eval-matrix";
+import data from "@/content/generated/eval-matrix.json";
 
 describe("fleet episode (synthetic)", () => {
   it("accumulates rewards to exactly 1.0 at task completion", () => {
@@ -59,9 +60,31 @@ describe("flow demos", () => {
   });
 });
 
-describe("eval matrix (sample data)", () => {
-  it("has a result for every task × model cell", () => {
-    expect(evalRun.results).toHaveLength(evalRun.tasks.length * evalRun.models.length);
+describe("eval matrix (real run data)", () => {
+  const passes = (server: string, model: string) =>
+    data.runs.filter((r) => r.server === server && r.model === model && r.outcome === "pass").length;
+
+  it("has 12 tasks x 6 columns x 2 repeats = 144 runs", () => {
+    expect(evalRun.tasks).toHaveLength(12);
+    expect(evalRun.columns).toHaveLength(6);
+    expect(evalRun.results).toHaveLength(72);
+    expect(evalRun.results.every((c) => c.repeats.length === 2)).toBe(true);
+    expect(data.runs).toHaveLength(144);
+  });
+
+  it("matches the published pass totals", () => {
+    expect(passes("neatcode", "openai/gpt-6.1-sol")).toBe(24);
+    expect(passes("filesystem", "openai/gpt-6.1-sol")).toBe(24);
+    expect(passes("neatcode", "google/gemini-3.8-flash")).toBe(0);
+    expect(passes("filesystem", "google/gemini-3.8-flash")).toBe(6);
+    expect(passes("neatcode", "qwen/qwen3.8-flash")).toBe(2);
+    expect(passes("filesystem", "qwen/qwen3.8-flash")).toBe(6);
+  });
+
+  it("contains no local paths or keys", () => {
+    const text = JSON.stringify(data);
+    expect(text).not.toContain("/Users/");
+    expect(text).not.toContain("sk-or-");
   });
 
   it("replays every cell exactly once", () => {

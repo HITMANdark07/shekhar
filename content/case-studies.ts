@@ -433,8 +433,8 @@ export const caseStudies: Record<string, CaseStudy> = {
     demo: {
       key: "eval-matrix",
       title: "The eval matrix",
-      source: "sample",
-      caption: "Sample data showing the shape of a run: tasks down the side, models across the top. Cells fill as the run replays; select one for its trace summary. The first real run's results are summarised under Outcomes and published in the repo.",
+      source: "real",
+      caption: "Real results from the first mcp-evals run (2026-10-16): 12 code-navigation tasks × 2 repeats, NeatCode vs. the filesystem MCP server, three models. Cells fill as the run replays; select one for what happened.",
     },
     how: [
       { title: "Suites as YAML", detail: "Tasks, graders, servers and models are declared in a suite file, validated with zod, with pinned model IDs and fixture commits." },
