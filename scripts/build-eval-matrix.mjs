@@ -7,7 +7,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { gunzipSync } from "node:zlib";
 
-const DEFAULT = "/Users/shekhar/Desktop/mcp-evals/data/runs/2026-10-16T11-09-26-158Z-3e36fe";
+// Default: the mcp-evals checkout next to this repo's parent folder (~/Desktop/mcp-evals beside ~/Desktop/portfolio/shekhar).
+const DEFAULT = join(import.meta.dirname, "..", "..", "..", "mcp-evals", "data", "runs", "2026-10-16T11-09-26-158Z-3e36fe");
 const dir = process.argv[2] ?? DEFAULT;
 
 const results = JSON.parse(readFileSync(join(dir, "results.json"), "utf8"));
