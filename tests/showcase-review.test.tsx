@@ -21,11 +21,12 @@ describe("final review fixes", () => {
     expect(rewarded[0].reward).toBe(1);
   });
 
-  it("describes unbuilt mcp-evals features as planned, not shipped", () => {
-    const cs = JSON.stringify(caseStudies["mcp-evals"]);
-    expect(cs).not.toMatch(/feeds the CLI, a GitHub Action regression gate, a public leaderboard/);
-    expect(cs).toMatch(/planned/i);
-    expect(projects.find((p) => p.slug === "mcp-evals")!.tagline).toMatch(/being built|building/i);
+  it("links mcp-evals' released npm package and leaderboard", () => {
+    const p = projects.find((p) => p.slug === "mcp-evals")!;
+    expect(p.status).toBe("active");
+    expect(p.links?.npm).toEqual(["mcp-arena"]);
+    expect(p.links?.more?.[0].href).toBe("https://hitmandark07.github.io/mcp-evals/");
+    expect(JSON.stringify(caseStudies["mcp-evals"])).not.toMatch(/planned to read the same file/);
   });
 
   it("does not claim the NeatCode index ships inside the npm package", () => {

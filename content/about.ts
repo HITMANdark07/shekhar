@@ -29,7 +29,7 @@ export const currently = {
   items: [
     {
       label: "Building mcp-evals",
-      detail: "an open-source eval harness for MCP servers. Its first real benchmark, NeatCode vs. the filesystem server across three models, is published.",
+      detail: "an open-source eval harness for MCP servers, on npm as mcp-arena with a public leaderboard. Two benchmarks of NeatCode vs. the filesystem server are published.",
       href: "/projects/mcp-evals",
     },
     {

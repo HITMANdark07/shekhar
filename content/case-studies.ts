@@ -424,7 +424,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     tldr: [
       "An open-source harness that runs the same tasks across models and MCP servers, grades the results, and records every step.",
       "Measures task success, invalid tool calls, context tokens returned by tool calls, steps, latency and cost, with every model pinned to one provider through OpenRouter.",
-      "Milestones 1 and 2 are merged, and the first real benchmark is published: 144 runs comparing NeatCode with the filesystem MCP server across three models.",
+      "On npm as `mcp-arena`, with a GitHub Action that gates pull requests on regressions and a public leaderboard. Two benchmarks are published: 144 paid runs and 48 free-model runs comparing NeatCode with the filesystem MCP server.",
     ],
     context: [
       "MCP servers and agent tools are easy to claim value for and hard to compare: results depend on the model, the prompt, the limits and the task.",
@@ -442,7 +442,7 @@ export const caseStudies: Record<string, CaseStudy> = {
       { title: "Fresh server per task", detail: "Every task run starts a fresh MCP server process and a fresh copy of the fixture, so runs can't affect each other." },
       { title: "Own agent loop on the MCP SDK", detail: "A minimal loop sends the prompt, executes tool calls over MCP, and stops at the step, time or budget limit." },
       { title: "Graders and recorder", detail: "Deterministic graders check answers and tool use; a recorder traces every model call, tool call and token count." },
-      { title: "One results contract", detail: "A versioned results.json feeds the CLI's report, compare and publish commands today; a GitHub Action regression gate, a public leaderboard and this portfolio's embed are planned to read the same file." },
+      { title: "One results contract", detail: "A versioned results.json feeds the CLI's report, compare and publish commands, the GitHub Action's regression gate, the public leaderboard and the eval matrix on this page." },
     ],
     decisions: [
       {
@@ -462,18 +462,19 @@ export const caseStudies: Record<string, CaseStudy> = {
       },
     ],
     outcomes: [
-      "Milestones 1 and 2 merged: runner, deterministic graders, an OpenRouter provider with token and cost accounting and a per-call budget cap, resumable runs, and `report`, `compare` and `publish` commands; 290 tests.",
+      "Milestones 1 and 2 merged: runner, deterministic graders, an OpenRouter provider with token and cost accounting and a per-call budget cap, resumable runs, and `report`, `compare` and `publish` commands; 325 tests.",
       "First real run (2026-10-16): 12 code-navigation tasks on the Hono repo, NeatCode vs. the filesystem MCP server, GPT-6.1 Sol, Gemini 3.8 Flash and Qwen3.8 Flash, 2 repeats: 144 runs, $7.10 against a $10 cap.",
       "GPT-6.1 Sol solved all 24 runs on both servers. With NeatCode it pulled 61% fewer tool-result tokens into context (median 3,235 vs. 8,390) and cost 46% less per task, though it took more steps (6.0 vs. 4.4).",
       "Both flash models scored lower with NeatCode than with the filesystem server (Gemini 3.8 Flash 0% vs. 25%, Qwen3.8 Flash 8% vs. 25%). The published traces show how they failed; the methodology notes that the harness author also wrote NeatCode.",
       "Replaying those failing tool calls found a NeatCode bug: arrow-function constants such as Hono's `compose` and `every` were never indexed. NeatCode v0.1.5 fixes it (82 → 592 function nodes on the same repo). A small 1-repeat check with v0.1.5 ($1.23) took Qwen3.8 Flash from 2 of 24 to 9 of 12 tasks and Gemini 3.8 Flash from 0 of 12 to 2 of 6; the numbers above stay those measured with v0.1.4 until a full re-run.",
+      "Second run (2026-10-21), NeatCode v0.1.5 on two free OpenRouter models, 1 repeat, $0: Nemotron 3 Ultra solved 9 of 12 tasks with NeatCode vs. 5 of 12 with the filesystem server, using 89% less tool-result context (median 3,919 vs. 37,225 tokens). MiniMax M3.1 Flash tied at 5 of 12 with 58% less context. One repeat gives wide intervals, so it is a second data point, not a ranking.",
+      "Released: the CLI is on npm as `mcp-arena` (`npx mcp-arena compare base.json head.json` exits 1 on a regression), a GitHub Action posts the comparison as a PR comment, and a leaderboard built from the published runs is live at hitmandark07.github.io/mcp-evals. A `--provider openai-compatible` flag runs the same suites against local models such as Ollama.",
       "Results, traces and methodology are public: github.com/HITMANdark07/mcp-evals.",
     ],
     next: [
       "A full re-run with NeatCode v0.1.5 (2 repeats, all models).",
       "Harder tasks (GPT-6.1 Sol passed every one) and the general-tools suite.",
-      "M3: a GitHub Action with PR comments and a CI gate for NeatCode.",
-      "M4–M5: a public leaderboard and the live embed on this page.",
+      "Wire the GitHub Action into NeatCode's CI so every release is benchmarked.",
     ],
   },
 };

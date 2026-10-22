@@ -62,6 +62,7 @@ describe("registry helpers", () => {
 
   it("orders selected work as in the spec", () => {
     expect(getSelectedWork().map((p) => p.slug)).toEqual([
+      "mcp-evals",
       "gpu-inference",
       "fleet",
       "genai-platform",
@@ -76,7 +77,7 @@ describe("registry helpers", () => {
   });
 
   it("keeps building projects out of selected work and lists them separately", () => {
-    expect(getBuilding().map((p) => p.slug)).toEqual(["mcp-evals"]);
+    expect(getBuilding()).toEqual([]);
     expect(getSelectedWork().some((p) => p.status === "building")).toBe(false);
   });
 
